@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.web.socket.WebSocketSession;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class Matchmaking {
 	private Map<Integer, Game> rooms;
 	private Map<Integer, Player> playersIDMap;
@@ -28,11 +30,9 @@ public class Matchmaking {
 	
 	public Player addPlayer(WebSocketSession session) {
 		Player p = new Player(session, playersID);
-		playersIDMap.put(playersID, p);
-		playersWaitingQueue.add(p);
 		
+		playersIDMap.put(playersID, p);
 		playersID++;
-		playersWaiting++;
 		
 		return p;
 	}
@@ -41,10 +41,18 @@ public class Matchmaking {
 		return playersIDMap.remove(id);
 	}
 	
+	public void putPlayerOnQueue(Player p) {
+		playersWaitingQueue.add(p);
+		playersWaiting++;
+	}
+	
 	private void createGame() {
 		if (playersWaiting > 1) {
 			Player p1 = playersWaitingQueue.remove();
 			Player p2 = playersWaitingQueue.remove();
+			
+			p1.setRoomId(roomsID);
+			p2.setRoomId(roomsID);
 			
 			Game g = new Game(p1, p2);
 			
@@ -53,5 +61,9 @@ public class Matchmaking {
 			roomsID++;
 			playersWaiting -= 2;
 		}
+	}
+	
+	public void serveMessage(JsonNode node, Player p) {
+		rooms.get(p.getRoomId()).handleMessage(node);
 	}
 }
