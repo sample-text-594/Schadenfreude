@@ -24,6 +24,10 @@ public class Player {
 		this.handSize = 0;
 		this.stress = 0;
 	}
+	
+	public WebSocketSession getSession() {
+		return session;
+	}
 
 	public int getId() {
 		return id;

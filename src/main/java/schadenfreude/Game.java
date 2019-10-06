@@ -1,10 +1,19 @@
 package schadenfreude;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Iterator;
 import java.util.Random;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class Game {
+	private ObjectMapper mapper = new ObjectMapper();
+	
 	private Player player1;
 	private Player player2;
 	
@@ -20,8 +29,38 @@ public class Game {
 	}
 	
 	private void loadCards() {
-		//TODO Cargar listado de cartas desde un archivo
-		fillDecks(56, 6);
+		try {
+			InputStream fileStream = new FileInputStream("cards.json");
+			
+			JsonNode node;
+			node = mapper.readTree(fileStream);
+			
+			int totalCards = node.get("totalCards").asInt();
+			int specialCards = node.get("specialCards").asInt();
+			ArrayNode cards = (ArrayNode) node.get("cards");
+			Iterator<JsonNode> cardsIterator = cards.elements();
+			
+			int i = 0;
+			loadedCards = new Card[totalCards];
+			while (cardsIterator.hasNext()) {
+				node = cardsIterator.next();
+				loadedCards[i] = new Card(
+						node.get("id").asInt(),
+						node.get("type").asInt(),
+						node.get("stress").asInt(),
+						node.get("synergyID").asInt(),
+						node.get("synergyModifier").asInt()
+				);
+				
+				i++;
+			}
+			
+			fillDecks(totalCards, specialCards);
+		} catch (FileNotFoundException e) {
+			System.out.println("Error trying to open card list");
+		} catch (IOException e) {
+			System.out.println("Error trying to read card list");
+		}
 	}
 	
 	private void fillDecks(int totalCards, int specialCards) {

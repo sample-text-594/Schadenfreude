@@ -2,13 +2,13 @@ package schadenfreude;
 
 public class Card {
 	private int id;
-	private int type;
+	private int type; //0 = transporte / 1 = alimentacion / 2 = hogar / 3 = trabajo / 4 sociales / 5 especiales
 	private int stress;
 	
 	private int synergyID;
 	private int synergyModifier;
 	
-	public Card(int id, String title, String description, int type, int stress, int synergyID, int synergyModifier) {
+	public Card(int id, int type, int stress, int synergyID, int synergyModifier) {
 		this.id = id;
 		this.type = type;
 		this.stress = stress;

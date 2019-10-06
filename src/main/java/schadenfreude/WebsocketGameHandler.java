@@ -12,7 +12,7 @@ public class WebsocketGameHandler extends TextWebSocketHandler {
 	private static final String PLAYER_ATTRIBUTE = "PLAYER";
 	private ObjectMapper mapper = new ObjectMapper();
 	
-	Matchmaking matchmaking = new Matchmaking();
+	private Matchmaking matchmaking = new Matchmaking();
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -26,17 +26,14 @@ public class WebsocketGameHandler extends TextWebSocketHandler {
 		
 		node = mapper.readTree(message.getPayload());
 		
-		switch (node.get("type").asText()) {
-			case "MATCHMAKING":
-				switch (node.get("method").asText()) {
-					case "PUTONQUEUE":
-						matchmaking.putPlayerOnQueue((Player) session.getAttributes().get(PLAYER_ATTRIBUTE));
-						break;
-				}
-				break;
-			case "GAME":
-				matchmaking.serveMessage(node, (Player) session.getAttributes().get(PLAYER_ATTRIBUTE));
-				break;
+		if (node.get("type").asText() == "MATCHMAKING") {
+			switch (node.get("method").asText()) {
+				case "PUTONQUEUE":
+					matchmaking.putPlayerOnQueue((Player) session.getAttributes().get(PLAYER_ATTRIBUTE));
+					break;
+			}
+		} else {
+			matchmaking.serveMessage(node, (Player) session.getAttributes().get(PLAYER_ATTRIBUTE));
 		}
 	}
 	
