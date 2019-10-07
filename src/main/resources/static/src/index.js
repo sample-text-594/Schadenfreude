@@ -1,12 +1,18 @@
 window.onload = function() {
 
-	game = new Phaser.Game(1024, 600, Phaser.AUTO, 'gameDiv')
+	var height = window.innerHeight*0.98;
+	var width = height*16/9*0.98;
+	game = new Phaser.Game(width, height, Phaser.CANVAS, 'gameDiv')
 
 	// GLOBAL VARIABLES
 	game.global = {
+		scale : width/1280,
+		width : width,
+		height : height,
 		FPS : 30,
 		DEBUG_MODE : true,
-		socket : null
+		socket : null,
+		lang : "es"
 	}
 
 	// WEBSOCKET CONFIGURATOR

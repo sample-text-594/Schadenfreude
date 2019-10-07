@@ -17,7 +17,7 @@ Schadenfreude.preloadState.prototype = {
         var text = game.add.text(game.world.centerX, game.world.centerX, text, style);
         
         //Load Assets
-        game.load.image('card', 'assets/Card.png');
+        game.load.image('blankcard', 'assets/Card.png');
 
     },
 
