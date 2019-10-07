@@ -18,6 +18,10 @@ Schadenfreude.preloadState.prototype = {
         
         //Load Assets
         game.load.image('blankcard', 'assets/Card.png');
+        game.load.image('flag1', 'assets/flag.png');
+        game.load.image('flag2', 'assets/redflag.png');
+        game.load.image('arrow', 'assets/arrow.png');
+        game.load.image('ok', 'assets/ok.png');
 
     },
 

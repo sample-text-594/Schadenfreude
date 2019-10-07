@@ -19,8 +19,10 @@ Schadenfreude.languageState.prototype = {
         var text = "Elige el idioma:";
         var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
         var text = game.add.text(0, 0, text, style);
-        game.add.button(game.global.width*0.2, game.global.height*0.2, 'blankcard', espButton, this);
-        game.add.button(game.global.width*0.6, game.global.height*0.2, 'blankcard', engButton, this);
+        var flag1 = game.add.button(game.global.width*0.15, game.global.height*0.4, 'flag1', espButton, this);
+        var flag2 = game.add.button(game.global.width*0.55, game.global.height*0.4, 'flag2', engButton, this);
+        flag1.scale.setTo(0.5, 0.5);
+        flag2.scale.setTo(0.5, 0.5);
 
     },
 
