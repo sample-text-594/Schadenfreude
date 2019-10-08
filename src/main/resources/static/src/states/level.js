@@ -19,14 +19,19 @@ Schadenfreude.levelState.prototype = {
     create: function() {
         game.stage.backgroundColor = "4488AA";
 
+        //Test
+        var test = game.add.sprite(200 * game.global.scale, 200 * game.global.scale, 'ok');
+        test.scale.setTo(game.global.scale * 0.1, game.global.scale * 0.1);
+
         for (var i = 0; i < 5; i++) {
-            hand[i] = game.add.sprite((100 + i * 150) * game.global.scale, 600 * game.global.scale, 'blankcard');
-            hand[i].scale.setTo(0.5*game.global.scale, 0.5*game.global.scale);
+            hand[i] = game.add.sprite((100 + i * 175) * game.global.scale, 800 * game.global.scale, 'carta4' + i);
+            hand[i].scale.setTo(0.2 * game.global.scale, 0.2 * game.global.scale);
             hand[i].inputEnabled = true;
             hand[i].grabbed = false;
         }
 
-        cardPreview = game.add.sprite(600, 200, 'blankcard');
+        cardPreview = game.add.sprite(600 * game.global.scale, 200 * game.global.scale, 'blankcard');
+        cardPreview.scale.setTo(0.5 * game.global.scale, 0.5 * game.global.scale);
         cardPreview.kill();
 
         game.input.mouse.capture = true;
@@ -40,7 +45,7 @@ Schadenfreude.levelState.prototype = {
 
 function cardMovement() {
     for (var i = 0; i < 5; i++) {
-        if (hand[i].input.pointerOver() && game.input.activePointer.leftButton.onDown && cardGrabbed == false) {
+        if (hand[i].input.pointerOver() && game.input.activePointer.leftButton.isDown && cardGrabbed == false) {
             hand[i].grabbed = true;
             cardGrabbed = true;
         }
@@ -50,7 +55,7 @@ function cardMovement() {
             hand[i].y = hand[i].y + (game.input.mousePointer.y - prevMouseY);
         }
 
-        if (game.input.activePointer.leftButton.isUp) {
+        if (game.input.activePointer.leftButton.isUp && hand[i].grabbed) {
             hand[i].grabbed = false;
             cardGrabbed = false;
 
@@ -58,8 +63,8 @@ function cardMovement() {
                 hand[i].x = 200 * game.global.scale;
                 hand[i].y = 200 * game.global.scale;
             } else {
-                hand[i].x = (100 + i * 150) * game.global.scale;
-                hand[i].y = 600 * game.global.scale;
+                hand[i].x = (100 + i * 175) * game.global.scale;
+                hand[i].y = 800 * game.global.scale;
             }
         }
     }

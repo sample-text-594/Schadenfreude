@@ -23,6 +23,10 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('arrow', 'assets/arrow.png');
         game.load.image('ok', 'assets/ok.png');
 
+        for (var i = 0; i < 5; i++) {
+            game.load.image('carta4' + i, 'assets/test/carta4' + i + '.png');
+        }
+
     },
 
     create: function() {
