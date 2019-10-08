@@ -15,10 +15,14 @@ Schadenfreude.settingsState.prototype = {
     },
 
     create: function() {
-
+        backB = game.add.button(605, 460, 'ok', backButton, this);
     },
 
     update: function() {
         
     }
+}
+
+function backButton() {
+    game.state.start('menuState');    
 }
