@@ -33,6 +33,7 @@ Schadenfreude.languageState.prototype = {
 }
 
 function espButton() {
+	game.global.lang = 'es';
     game.state.start('menuState');    
 }
 

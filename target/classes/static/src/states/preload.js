@@ -22,11 +22,26 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('flag2', 'assets/redflag.png');
         game.load.image('arrow', 'assets/arrow.png');
         game.load.image('ok', 'assets/ok.png');
-
-        for (var i = 0; i < 5; i++) {
-            game.load.image('carta4' + i, 'assets/test/carta4' + i + '.png');
+        
+        //Cargamos las cartas en español
+        for (var i = 0; i < 51; i++) {
+            game.load.image('carta' + i + 'es', 'assets/es/carta' + i + '.png');
+        }
+        
+        for (var i = 1; i < 6; i++) {
+            game.load.image('carta5' + i + 'aes', 'assets/es/carta5' + i + 'a.png');
+            game.load.image('carta5' + i + 'bes', 'assets/es/carta5' + i + 'b.png');
         }
 
+        //Cargamos las cartas en ingles
+        for (var i = 0; i < 51; i++) {
+            game.load.image('carta' + i + 'en', 'assets/en/carta' + i + '.png');
+        }
+        
+        for (var i = 1; i < 6; i++) {
+            game.load.image('carta5' + i + 'aen', 'assets/en/carta5' + i + 'a.png');
+            game.load.image('carta5' + i + 'ben', 'assets/en/carta5' + i + 'b.png');
+        }
     },
 
     create: function() {

@@ -24,7 +24,7 @@ Schadenfreude.levelState.prototype = {
         test.scale.setTo(game.global.scale * 0.1, game.global.scale * 0.1);
 
         for (var i = 0; i < 5; i++) {
-            hand[i] = game.add.sprite((100 + i * 175) * game.global.scale, 800 * game.global.scale, 'carta4' + i);
+            hand[i] = game.add.sprite((100 + i * 175) * game.global.scale, 800 * game.global.scale, 'carta' + game.global.player.hand[i] + game.global.lang);
             hand[i].scale.setTo(0.2 * game.global.scale, 0.2 * game.global.scale);
             hand[i].inputEnabled = true;
             hand[i].grabbed = false;

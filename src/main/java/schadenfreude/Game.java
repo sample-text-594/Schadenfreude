@@ -128,13 +128,21 @@ public class Game {
 		
 		for (Card c : player1.getHand()) {
 			if (c != null) {
-				cardArray1.add(c.getId());
+				if (c.getType() != 5) {
+					cardArray1.add(c.getId());
+				} else {
+					cardArray1.add(c.getId() + "a");
+				}
 			}
 		}
 		
 		for (Card c : player2.getHand()) {
 			if (c != null) {
-				cardArray2.add(c.getId());
+				if (c.getType() != 5) {
+					cardArray2.add(c.getId());
+				} else {
+					cardArray2.add(c.getId() + "b");
+				}
 			}
 		}
 		
