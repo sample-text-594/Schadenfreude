@@ -18,12 +18,12 @@ Schadenfreude.bootState.prototype = {
 	},
 
 	create : function() {
-
+		game.physics.startSystem(Phaser.Physics.ARCADE);
 	},
 
 	update : function() {
 		if (typeof game.global.socket !== 'undefined') {
-			//game.state.start('preloadState')
+			game.state.start('preloadState')
 		}
 	}
 }

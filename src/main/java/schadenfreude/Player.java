@@ -40,6 +40,14 @@ public class Player {
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
+	
+	public Card[] getHand() {
+		return hand;
+	}
+
+	public int getHandSize() {
+		return handSize;
+	}
 
 	public int getStress() {
 		return stress;

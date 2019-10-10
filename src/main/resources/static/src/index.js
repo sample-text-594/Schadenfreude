@@ -2,7 +2,7 @@ window.onload = function() {
 
 	var height = window.innerHeight*0.98;
 	var width = height*16/9*0.98;
-	game = new Phaser.Game(width, height, Phaser.CANVAS, 'gameDiv')
+	game = new Phaser.Game(width, height, Phaser.CANVAS, 'gameDiv');
 
 	// GLOBAL VARIABLES
 	game.global = {
@@ -12,34 +12,43 @@ window.onload = function() {
 		FPS : 30,
 		DEBUG_MODE : true,
 		socket : null,
-		lang : "es"
+		lang : "es",
+		player : undefined,
+		room : undefined
 	}
 
 	// WEBSOCKET CONFIGURATOR
-	/*game.global.socket = new WebSocket("ws://127.0.0.1:8080/game")
+	game.global.socket = new WebSocket("ws://127.0.0.1:8080/game");
 	
 	game.global.socket.onopen = () => {
 		if (game.global.DEBUG_MODE) {
-			console.log('[DEBUG] WebSocket connection opened.')
+			console.log('[DEBUG] WebSocket connection opened.');
 		}
 	}
 
 	game.global.socket.onclose = () => {
 		if (game.global.DEBUG_MODE) {
-			console.log('[DEBUG] WebSocket connection closed.')
+			console.log('[DEBUG] WebSocket connection closed.');
 		}
 	}
 	
 	game.global.socket.onmessage = (message) => {
-		var msg = JSON.parse(message.data)
+		var msg = JSON.parse(message.data);
 		
 		switch (msg.event) {
-		
+		case 'GAME READY':
+			game.global.player = {
+				stress : msg.stress,
+				handSize : msg.handsize,
+				hand : msg.hand
+			}
+			game.global.room = msg.roomid;
+			break;
 		default :
-			console.dir(msg)
-			break
+			console.dir(msg);
+			break;
 		}
-	}*/
+	}
 
 	// PHASER SCENE CONFIGURATOR
 	game.state.add('bootState', Schadenfreude.bootState)

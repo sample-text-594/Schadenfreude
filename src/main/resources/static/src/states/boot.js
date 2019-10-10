@@ -22,8 +22,8 @@ Schadenfreude.bootState.prototype = {
 	},
 
 	update : function() {
-		//if (typeof game.global.socket !== 'undefined') {
+		if (typeof game.global.socket !== 'undefined') {
 			game.state.start('preloadState')
-		//}
+		}
 	}
 }

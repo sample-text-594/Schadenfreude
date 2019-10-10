@@ -7,9 +7,13 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Random;
 
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.socket.TextMessage;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Game {
 	private ObjectMapper mapper = new ObjectMapper();
@@ -29,14 +33,18 @@ public class Game {
 	}
 	
 	private void loadCards() {
+		int totalCards = -1;
+		int specialCards = -1;
+		
 		try {
-			InputStream fileStream = new FileInputStream("cards.json");
+			InputStream fileStream = new FileInputStream(ResourceUtils.getFile("classpath:cards.json"));
 			
 			JsonNode node;
 			node = mapper.readTree(fileStream);
 			
-			int totalCards = node.get("totalCards").asInt();
-			int specialCards = node.get("specialCards").asInt();
+			totalCards = node.get("totalCards").asInt();
+			specialCards = node.get("specialCards").asInt();
+			
 			ArrayNode cards = (ArrayNode) node.get("cards");
 			Iterator<JsonNode> cardsIterator = cards.elements();
 			
@@ -54,13 +62,13 @@ public class Game {
 				
 				i++;
 			}
-			
-			fillDecks(totalCards, specialCards);
 		} catch (FileNotFoundException e) {
-			System.out.println("Error trying to open card list");
+			System.err.println("Error trying to open card list");
 		} catch (IOException e) {
-			System.out.println("Error trying to read card list");
+			System.err.println("Error trying to read card list");
 		}
+		
+		fillDecks(totalCards, specialCards);
 	}
 	
 	private void fillDecks(int totalCards, int specialCards) {
@@ -70,7 +78,7 @@ public class Game {
 		//Llenamos los mazos de los jugadores
 		for (int i = 0; i < (totalCards - specialCards) / 2; i++) {
 			player1Deck[i] = loadedCards[i];
-			player2Deck[i] = loadedCards[i + (totalCards - specialCards) / 2];
+			player2Deck[i] = loadedCards[(totalCards - specialCards) / 2 + i];
 		}
 		
 		//Preparamos las cartas especiales y las mezclamos
@@ -91,11 +99,11 @@ public class Game {
 		
 		//Añadimos equitativamente las cartas especiales a los mazos de los jugadores
 		for (int i = 0; i < specialCards / 2; i++) {
-			player1Deck[(totalCards - specialCards) + i] = specialCardsArr[i];
+			player1Deck[(totalCards - specialCards) / 2 + i] = specialCardsArr[i];
 		}
 		
 		for (int i = 0; i < specialCards / 2; i++) {
-			player2Deck[(totalCards - specialCards) + i] = specialCardsArr[specialCards / 2 + i];
+			player2Deck[(totalCards - specialCards) / 2 + i] = specialCardsArr[specialCards / 2 + i];
 		}
 		
 		//Colocamos las cartas en cada jugador, las mezclamos y robamos la mano inicial
@@ -107,6 +115,45 @@ public class Game {
 		
 		player1.drawCard(START_HAND_SIZE);
 		player2.drawCard(START_HAND_SIZE);
+	}
+	
+	public void startGame() {
+		ObjectNode msg;
+		ArrayNode cardArray1;
+		ArrayNode cardArray2;
+		
+		msg = mapper.createObjectNode();
+		cardArray1 = mapper.createArrayNode();
+		cardArray2 = mapper.createArrayNode();
+		
+		for (Card c : player1.getHand()) {
+			if (c != null) {
+				cardArray1.add(c.getId());
+			}
+		}
+		
+		for (Card c : player2.getHand()) {
+			if (c != null) {
+				cardArray2.add(c.getId());
+			}
+		}
+		
+		msg.put("event", "GAME READY");
+		msg.put("roomid", player1.getRoomId());
+		msg.put("handsize", player1.getHandSize());
+		msg.put("stress", player1.getStress());
+		
+		msg.putPOJO("hand", cardArray1);
+		
+		try {
+			player1.getSession().sendMessage(new TextMessage(msg.toString()));
+			
+			msg.replace("hand", cardArray2);
+			player2.getSession().sendMessage(new TextMessage(msg.toString()));
+		} catch (Exception e) {
+			System.err.println("Exception sending GAME READY message");
+			e.printStackTrace(System.err);
+		}
 	}
 	
 	public void handleMessage(JsonNode node) {

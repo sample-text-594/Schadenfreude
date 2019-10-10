@@ -1,5 +1,7 @@
 package schadenfreude;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.Executors;
@@ -22,6 +24,10 @@ public class Matchmaking {
 	private ScheduledExecutorService scheduler;
 	
 	public Matchmaking() {
+		rooms = new HashMap<>();
+		playersIDMap = new HashMap<>();
+		playersWaitingQueue = new LinkedList<>();
+		
 		if (scheduler == null) {
 			scheduler = Executors.newScheduledThreadPool(1);
 			scheduler.scheduleAtFixedRate(() -> createGame(), 1, 1, TimeUnit.SECONDS);
@@ -48,6 +54,7 @@ public class Matchmaking {
 	
 	private void createGame() {
 		if (playersWaiting > 1) {
+			playersWaiting -= 2;
 			Player p1 = playersWaitingQueue.remove();
 			Player p2 = playersWaitingQueue.remove();
 			
@@ -55,11 +62,11 @@ public class Matchmaking {
 			p2.setRoomId(roomsID);
 			
 			Game g = new Game(p1, p2);
+			g.startGame();
 			
 			rooms.put(roomsID, g);
 			
 			roomsID++;
-			playersWaiting -= 2;
 		}
 	}
 	
