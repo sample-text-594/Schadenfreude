@@ -30,6 +30,7 @@ public class Game {
 		this.player2 = player2;
 		
 		loadCards();
+		startGame();
 	}
 	
 	private void loadCards() {
@@ -166,7 +167,7 @@ public class Game {
 	
 	public void handleMessage(JsonNode node) {
 		switch (node.get("method").asText()) {
-			case "":
+			case "PLAY CARD":
 				break;
 		}
 	}

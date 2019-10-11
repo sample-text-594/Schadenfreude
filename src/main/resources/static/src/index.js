@@ -1,14 +1,11 @@
 window.onload = function() {
-
-	var height = window.innerHeight*0.98;
-	var width = height*16/9*0.98;
-	game = new Phaser.Game(width, height, Phaser.CANVAS, 'gameDiv');
+	game = new Phaser.Game(1280, 720, Phaser.CANVAS, 'gameDiv');
 
 	// GLOBAL VARIABLES
 	game.global = {
 		scale : 1,
-		width : width,
-		height : height,
+		width : 1280,
+		height : 720,
 		FPS : 30,
 		DEBUG_MODE : true,
 		socket : null,
@@ -18,7 +15,7 @@ window.onload = function() {
 	}
 
 	// WEBSOCKET CONFIGURATOR
-	game.global.socket = new WebSocket("ws://127.0.0.1:8080/game");
+	game.global.socket = new WebSocket("ws://" + window.location.hostname + ":8080/game");
 	
 	game.global.socket.onopen = () => {
 		if (game.global.DEBUG_MODE) {

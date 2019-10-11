@@ -18,7 +18,7 @@ Schadenfreude.bootState.prototype = {
 	},
 
 	create : function() {
-		game.physics.startSystem(Phaser.Physics.ARCADE);
+		game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 	},
 
 	update : function() {

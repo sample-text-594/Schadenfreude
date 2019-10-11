@@ -62,7 +62,6 @@ public class Matchmaking {
 			p2.setRoomId(roomsID);
 			
 			Game g = new Game(p1, p2);
-			g.startGame();
 			
 			rooms.put(roomsID, g);
 			
