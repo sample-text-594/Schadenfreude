@@ -50,6 +50,14 @@ Schadenfreude.preloadState.prototype = {
             game.load.image('carta5' + i + 'aen', 'assets/en/carta5' + i + 'a.png');
             game.load.image('carta5' + i + 'ben', 'assets/en/carta5' + i + 'b.png');
         }
+        
+        //Cargamos los reversos
+        game.load.image('0back', 'assets/backs/Transporte_reverso.png');
+        game.load.image('1back', 'assets/backs/Alimentacion_reverso.png');
+        game.load.image('2back', 'assets/backs/Hogar_reverso.png');
+        game.load.image('3back', 'assets/backs/Trabajo_reverso.png');
+        game.load.image('4back', 'assets/backs/Social_reverso.png');
+        game.load.image('5back', 'assets/backs/Especiales_reverso.png');
     },
 
     create: function() {

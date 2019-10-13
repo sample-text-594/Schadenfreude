@@ -16,6 +16,9 @@ public class Player {
 	private int deckPosition;
 	private int stress;
 	
+	private int turn;
+	private String side;
+	
 	public Player(WebSocketSession session, int id) {
 		this.session = session;
 		this.id = id;
@@ -23,8 +26,10 @@ public class Player {
 		this.hand = new Card[MAX_HAND_SIZE];
 		this.handSize = 0;
 		this.stress = 0;
+		this.turn = 0;
 	}
 	
+	//Getters and setters
 	public WebSocketSession getSession() {
 		return session;
 	}
@@ -57,8 +62,25 @@ public class Player {
 		this.stress = stress;
 	}
 
+	public int getTurn() {
+		return turn;
+	}
+
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
+
+	public String getSide() {
+		return side;
+	}
+
+	public void setSide(String side) {
+		this.side = side;
+	}
+
+	//Methods
 	public boolean canDraw(int num) {
-		return (handSize + num) < MAX_HAND_SIZE ;
+		return (handSize + num - 1) < MAX_HAND_SIZE ;
 	}
 	
 	public void fillDeck(Card[] deck) {
@@ -80,18 +102,22 @@ public class Player {
 	
 	public void drawCard(int draws) {
 		for(int i = 0; i < draws; i++) {
-			hand[handSize] = deck[deckPosition];
-			handSize++;
-			deckPosition++;
+			for(int j = 0; j < MAX_HAND_SIZE; j++) {
+				if (hand[j] == null) {
+					hand[j] = deck[deckPosition];
+					handSize++;
+					deckPosition++;
+					break;
+				}
+			}
 		}
 	}
 	
-	public void useCard(int pos) {
-		for(int i = pos ; i < handSize - 1; i++) {
-			hand[i] = hand[i + 1];
-		}
-		
-		hand[handSize] = null;
+	public Card useCard(int pos) {
+		Card c = hand[pos];
+		hand[pos] = null;
 		handSize--;
+		
+		return c;
 	}
 }

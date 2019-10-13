@@ -70,6 +70,6 @@ public class Matchmaking {
 	}
 	
 	public void serveMessage(JsonNode node, Player p) {
-		rooms.get(p.getRoomId()).handleMessage(node);
+		rooms.get(p.getRoomId()).handleMessage(node, p.getId());
 	}
 }

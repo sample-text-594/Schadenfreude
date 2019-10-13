@@ -37,9 +37,42 @@ window.onload = function() {
 			game.global.player = {
 				stress : msg.stress,
 				handSize : msg.handsize,
-				hand : msg.hand
+				hand : msg.hand,
+				handTypes : msg.handTypes,
+				turn : msg.turn,
+				side : msg.side
 			}
-			game.global.room = msg.roomid;
+			game.global.room = {
+				id : msg.roomid,
+				cardsAllowed : msg.cardsAllowed,
+				attackCardPlayed : false,
+				attackCard : -1,
+				defenseCardPlayed : false,
+				defenseCard : -1,
+				beginTurn : false
+			}
+			break;
+		case 'ATTACK CARD PLAYED':
+			game.global.room.cardsAllowed = [msg.cardType, 5];
+			game.global.room.attackCardPlayed = true;
+			break;
+		case 'DEFENSE CARD PLAYED':
+			game.global.player.stress = msg.stress;
+			game.global.room.attackCard = msg.attackCardId;
+			game.global.room.defenseCard = msg.defenseCardId;
+			game.global.room.defenseCardPlayed = true;
+			break;
+		case 'BEGIN TURN':
+			game.global.room.beginTurn = true;
+			for (var i = 0; i < 6; i++) {
+				if (game.global.player.hand[i] == -1 && msg.hand[i] != -1) {
+					game.global.player.hand[i] = msg.hand[i];
+					game.global.player.handTypes[i] = msg.handTypes[i];
+				}
+			}
+			if (game.global.player.side == "ataque") {
+				game.global.room.cardsAllowed = msg.cardsAllowed;
+			}
 			break;
 		default :
 			console.dir(msg);
