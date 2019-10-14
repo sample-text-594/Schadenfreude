@@ -272,7 +272,12 @@ public class Game {
 		} else {
 			c = defensePlayer.useCard(cardPos);
 			
-			int stressMod = attackCard.getStress() + c.getStress();
+			int stressMod;
+			if (c.getType() != 5) {
+				stressMod = attackCard.getStress() + c.getStress();
+			} else {
+				stressMod = attackCard.getStress() - c.getStress();
+			}
 			if (c.getSynergyID() == attackCard.getId()) {
 				stressMod += c.getSynergyModifier();
 			}
@@ -339,6 +344,7 @@ public class Game {
 				
 				msg.putPOJO("hand", cardArray);
 				msg.putPOJO("handTypes", cardArrayType);
+				msg.put("time", time);
 				
 				try {
 					defensePlayer.getSession().sendMessage(new TextMessage(msg.toString()));
@@ -399,6 +405,7 @@ public class Game {
 			msg.putPOJO("hand", cardArray);
 			msg.putPOJO("handTypes", cardArrayType);
 			msg.putPOJO("cardsAllowed", cardsAllowed);
+			msg.put("time", time);
 			
 			try {
 				attackPlayer.getSession().sendMessage(new TextMessage(msg.toString()));

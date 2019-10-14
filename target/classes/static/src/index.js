@@ -63,7 +63,7 @@ window.onload = function() {
 			game.global.room.defenseCardPlayed = true;
 			break;
 		case 'BEGIN TURN':
-			game.global.room.beginTurn = true;
+			game.global.room.time = msg.time;
 			for (var i = 0; i < 6; i++) {
 				if (game.global.player.hand[i] == -1 && msg.hand[i] != -1) {
 					game.global.player.hand[i] = msg.hand[i];
@@ -73,6 +73,7 @@ window.onload = function() {
 			if (game.global.player.side == "ataque") {
 				game.global.room.cardsAllowed = msg.cardsAllowed;
 			}
+			game.global.room.beginTurn = true;
 			break;
 		default :
 			console.dir(msg);
