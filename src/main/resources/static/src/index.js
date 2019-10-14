@@ -49,7 +49,8 @@ window.onload = function() {
 				attackCard : -1,
 				defenseCardPlayed : false,
 				defenseCard : -1,
-				beginTurn : false
+				beginTurn : false,
+				time : 'mañana'
 			}
 			break;
 		case 'ATTACK CARD PLAYED':
@@ -63,7 +64,11 @@ window.onload = function() {
 			game.global.room.defenseCardPlayed = true;
 			break;
 		case 'BEGIN TURN':
+			if (game.global.room.time != msg.time) {
+				game.global.room.timeRotate = true;
+			}
 			game.global.room.time = msg.time;
+
 			for (var i = 0; i < 6; i++) {
 				if (game.global.player.hand[i] == -1 && msg.hand[i] != -1) {
 					game.global.player.hand[i] = msg.hand[i];

@@ -120,4 +120,36 @@ public class Player {
 		
 		return c;
 	}
+	
+	public void swapSide() {
+		if (side == "ataque") {
+			side = "defensa";
+			
+			for (int i = 0; i < MAX_HAND_SIZE; i++) {
+				if (hand[i] != null && hand[i].getType() != 5) {
+					hand[i].setId(hand[i].getId() + 25);
+				}
+			}
+			
+			for (int i = 0; i < deck.length; i++) {
+				if (deck[i].getType() != 5) {
+					deck[i].setId(deck[i].getId() + 25);
+				}
+			}
+		} else {
+			side = "ataque";
+			
+			for (int i = 0; i < MAX_HAND_SIZE; i++) {
+				if (hand[i] != null && hand[i].getType() != 5) {
+					hand[i].setId(hand[i].getId() - 25);
+				}
+			}
+			
+			for (int i = 0; i < deck.length; i++) {
+				if (deck[i].getType() != 5) {
+					deck[i].setId(deck[i].getId() - 25);
+				}
+			}
+		}
+	}
 }

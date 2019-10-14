@@ -19,22 +19,21 @@ Schadenfreude.levelState.prototype = {
 	},
 
     create: function() {
-        game.stage.backgroundColor = "4488AA";
-        
         //Interface
+    	this.fondo = game.add.sprite(0, 0, 'fondo');
+    	this.fondo.scale.setTo(1.2, 2);
+        this.fondo.posX = 0;
+        this.fondo.posY = 0;
+        this.fondo.escalaX = 2;
+        this.fondo.escalaY = 2;
+        this.resizeBuffer.push(this.fondo);
+        
         this.textoTurno = game.add.text(100, 100, "ataque");
         this.textoTurno.posX = 100;
         this.textoTurno.posY = 100;
         this.textoTurno.escalaX = 1;
         this.textoTurno.escalaY = 1;
         this.resizeBuffer.push(this.textoTurno);
-        
-        this.textoTiempo = game.add.text(300, 100, "mañana");
-        this.textoTiempo.posX = 300;
-        this.textoTiempo.posY = 100;
-        this.textoTiempo.escalaX = 1;
-        this.textoTiempo.escalaY = 1;
-        this.resizeBuffer.push(this.textoTiempo);
         
         this.textoStress = game.add.text(500, 100, "stress: 0");
         this.textoStress.posX = 500;
@@ -43,36 +42,32 @@ Schadenfreude.levelState.prototype = {
         this.textoStress.escalaY = 1;
         this.resizeBuffer.push(this.textoStress);
         
-        this.marcas = game.add.sprite(400, 200, 'marcas');
-        this.marcas.scale.setTo(0.98, 0.96);
-        this.marcas.posX = 400;
-        this.marcas.posY = 200;
-        this.marcas.escalaX = 0.98;
-        this.marcas.escalaY = 0.96;
-        this.resizeBuffer.push(this.marcas);
+        this.marcaEspada = game.add.sprite(400, 200, 'marcaEspada');
+        this.marcaEspada.scale.setTo(0.95, 0.95);
+        this.marcaEspada.posX = 400;
+        this.marcaEspada.posY = 200;
+        this.marcaEspada.escalaX = 0.95;
+        this.marcaEspada.escalaY = 0.95;
+        this.resizeBuffer.push(this.marcaEspada);
         
-        this.espada = game.add.sprite(445, 245, 'espada');
-        this.espada.scale.setTo(0.5, 0.5);
-        this.espada.posX = 445;
-        this.espada.posY = 245;
-        this.espada.escalaX = 0.5;
-        this.espada.escalaY = 0.5;
-        this.resizeBuffer.push(this.espada);
+        this.marcaEscudo = game.add.sprite(653, 200, 'marcaEscudo');
+        this.marcaEscudo.scale.setTo(0.95, 0.95);
+        this.marcaEscudo.posX = 653;
+        this.marcaEscudo.posY = 200;
+        this.marcaEscudo.escalaX = 0.95;
+        this.marcaEscudo.escalaY = 0.95;
+        this.resizeBuffer.push(this.marcaEscudo);
         
-        this.escudo = game.add.sprite(700, 250, 'escudo');
-        this.escudo.scale.setTo(0.5, 0.5);
-        this.escudo.posX = 700;
-        this.escudo.posY = 250;
-        this.escudo.escalaX = 0.5;
-        this.escudo.escalaY = 0.5;
-        this.resizeBuffer.push(this.escudo);
-        
-        this.ruedaHoras = game.add.sprite(1000, 100, 'ruedaHoras');
-        this.ruedaHoras.posX = 1000;
-        this.ruedaHoras.posY = 100;
-        this.ruedaHoras.escalaX = 1;
-        this.ruedaHoras.escalaY = 1;
+        this.ruedaHoras = game.add.sprite(1314, 314, 'ruedaHoras');
+        this.marcaEscudo.scale.setTo(0.7, 0.7);
+        this.ruedaHoras.anchor.setTo(0.5, 0.5);
+        this.ruedaHoras.posX = 1314;
+        this.ruedaHoras.posY = 314;
+        this.ruedaHoras.escalaX = 0.7;
+        this.ruedaHoras.escalaY = 0.7;
         this.resizeBuffer.push(this.ruedaHoras);
+        
+        this.ruedaHoras.counter = 0;
 
         //Hand
         this.hand = [];
@@ -148,8 +143,16 @@ Schadenfreude.levelState.prototype = {
     },
 
     update: function() {
+    	if (game.global.room.timeRotate) {
+    		if (this.ruedaHoras.counter < 90) {
+    			this.ruedaHoras.angle -= 1;
+    			this.ruedaHoras.counter++;
+    		} else {
+    			this.ruedaHoras.counter = 0;
+    			game.global.room.timeRotate = false;
+    		}
+    	}
 		this.checkForUpdates();
-    	
         this.cardPreviewer();
     },
     
@@ -267,7 +270,6 @@ Schadenfreude.levelState.prototype = {
     	}
     	
     	if (game.global.room.beginTurn) {
-    		this.textoTiempo.setText(game.global.room.time);
     		if (game.global.player.side == "ataque") {
     			if (this.cardBackAttack.alive) {
         			this.cardBackAttack.kill();

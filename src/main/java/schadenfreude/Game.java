@@ -280,6 +280,8 @@ public class Game {
 			}
 			if (c.getSynergyID() == attackCard.getId()) {
 				stressMod += c.getSynergyModifier();
+			} else if (attackCard.getSynergyID() == c.getId()) {
+				stressMod += attackCard.getSynergyModifier();
 			}
 			
 			defensePlayer.setStress(defensePlayer.getStress() + stressMod);
@@ -308,7 +310,12 @@ public class Game {
 			attackPlayer.setTurn(1);
 			defensePlayer.setTurn(0);
 			
-			beginTurn("ataque");
+			advanceTime();
+			if (time != "turnOver") {
+				beginTurn("ataque");
+			} else {
+				swapRoles();
+			}
 		}
 	}
 	
@@ -326,55 +333,35 @@ public class Game {
 		if (side == "defensa") {
 			if (defensePlayer.canDraw(1)) {
 				defensePlayer.drawCard(1);
+			}
 				
-				for (Card c : defensePlayer.getHand()) {
-					if (c != null) {
-						if (c.getType() != 5) {
-							cardArray.add(c.getId());
-						} else {
-							cardArray.add(c.getId() + "b");
-						}
-						
-						cardArrayType.add(c.getType());
+			for (Card c : defensePlayer.getHand()) {
+				if (c != null) {
+					if (c.getType() != 5) {
+						cardArray.add(c.getId());
 					} else {
-						cardArray.add(-1);
-						cardArrayType.add(-1);
+						cardArray.add(c.getId() + "b");
 					}
-				}
-				
-				msg.putPOJO("hand", cardArray);
-				msg.putPOJO("handTypes", cardArrayType);
-				msg.put("time", time);
-				
-				try {
-					defensePlayer.getSession().sendMessage(new TextMessage(msg.toString()));
-				} catch (IOException e) {
-					System.err.println("Exception sending BEGIN TURN message");
-					e.printStackTrace(System.err);
+					
+					cardArrayType.add(c.getType());
+				} else {
+					cardArray.add(-1);
+					cardArrayType.add(-1);
 				}
 			}
 			
-		} else {
-			if (turn < 2) {
-				turn++;
-			} else {
-				switch (time) {
-					case ("mañana"):
-						time = "mediodia";
-						break;
-					case ("mediodia"):
-						time = "tarde";
-						break;
-					case ("tarde"):
-						time = "noche";
-						break;
-					case ("noche"):
-						time = "mañana";
-						break;
-				}
-				
-				turn = 1;
+			msg.putPOJO("hand", cardArray);
+			msg.putPOJO("handTypes", cardArrayType);
+			msg.put("time", time);
+			
+			try {
+				defensePlayer.getSession().sendMessage(new TextMessage(msg.toString()));
+			} catch (IOException e) {
+				System.err.println("Exception sending BEGIN TURN message");
+				e.printStackTrace(System.err);
 			}
+			
+		} else {
 			if (attackPlayer.canDraw(1)) {
 				attackPlayer.drawCard(1);
 			}
@@ -413,6 +400,112 @@ public class Game {
 				System.err.println("Exception sending BEGIN TURN message");
 				e.printStackTrace(System.err);
 			}
+		}
+	}
+	
+	private void swapRoles() {
+		ObjectNode msg;
+		ArrayNode cardArray1;
+		ArrayNode cardArrayType1;
+		ArrayNode cardArray2;
+		ArrayNode cardArrayType2;
+		ArrayNode cardsAllowed;
+		
+		msg = mapper.createObjectNode();
+		cardArray1 = mapper.createArrayNode();
+		cardArrayType1 = mapper.createArrayNode();
+		cardArray2 = mapper.createArrayNode();
+		cardArrayType2 = mapper.createArrayNode();
+		cardsAllowed = mapper.createArrayNode();
+		
+		attackPlayer.swapSide();
+		defensePlayer.swapSide();
+		
+		Player auxPlayer = attackPlayer;
+		attackPlayer = defensePlayer;
+		defensePlayer = auxPlayer;
+		
+		for (Card c : attackPlayer.getHand()) {
+			if (c != null) {
+				if (c.getType() != 5) {
+					cardArray1.add(c.getId());
+				} else {
+					cardArray1.add(c.getId() + "a");
+				}
+				
+				cardArrayType1.add(c.getType());
+			} else {
+				cardArray1.add(-1);
+				cardArrayType1.add(-1);
+			}
+		}
+		
+		for (Card c : defensePlayer.getHand()) {
+			if (c != null) {
+				if (c.getType() != 5) {
+					cardArray2.add(c.getId());
+				} else {
+					cardArray2.add(c.getId() + "b");
+				}
+				
+				cardArrayType2.add(c.getType());
+			} else {
+				cardArray2.add(-1);
+				cardArrayType2.add(-1);
+			}
+		}
+		
+		for (int a : getCardsAllowed()) {
+			cardsAllowed.add(a);
+		}
+		
+		msg.put("event", "SIDE SWAP");
+		msg.put("stress", attackPlayer.getStress());
+		
+		msg.putPOJO("hand", cardArray1);
+		msg.putPOJO("handTypes", cardArrayType1);
+		msg.putPOJO("cardsAllowed", cardsAllowed);
+		
+		try {
+			attackPlayer.getSession().sendMessage(new TextMessage(msg.toString()));
+		} catch (IOException e) {
+			System.err.println("Exception sending SIDE SWAP message");
+			e.printStackTrace(System.err);
+		}
+		
+		msg.replace("hand", cardArray2);
+		msg.replace("handTypes", cardArrayType2);
+		
+		try {
+			defensePlayer.getSession().sendMessage(new TextMessage(msg.toString()));
+		} catch (IOException e) {
+			System.err.println("Exception sending SIDE SWAP message");
+			e.printStackTrace(System.err);
+		}
+		
+		beginTurn("ataque");
+	}
+	
+	private void advanceTime() {
+		if (turn < 1) {
+			turn++;
+		} else {
+			switch (time) {
+				case ("mañana"):
+					time = "mediodia";
+					break;
+				case ("mediodia"):
+					time = "tarde";
+					break;
+				case ("tarde"):
+					time = "noche";
+					break;
+				case ("noche"):
+					time = "turnOver";
+					break;
+			}
+			
+			turn = 1;
 		}
 	}
 	

@@ -25,10 +25,8 @@ public class WebsocketGameHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		try {
 			JsonNode node;
-			ObjectNode msg;
 			
 			node = mapper.readTree(message.getPayload());
-			msg = mapper.createObjectNode();
 			
 			if (node.get("type").asText().equals("MATCHMAKING")) {
 				switch (node.get("event").asText()) {
