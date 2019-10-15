@@ -14,35 +14,30 @@ Schadenfreude.levelState.prototype = {
 	
 	preload: function() {
 		this.resizeBuffer = [];
-		this.animationBuffer = [];
-		this.state = "anim";
 	},
 
     create: function() {
         //Interface
     	this.fondo = game.add.sprite(0, 0, 'fondo');
-    	this.fondo.scale.setTo(1.2, 2);
+    	this.fondo.scale.setTo(2, 2);
         this.fondo.posX = 0;
         this.fondo.posY = 0;
         this.fondo.escalaX = 2;
         this.fondo.escalaY = 2;
         this.resizeBuffer.push(this.fondo);
         
-        this.textoTurno = game.add.text(100, 100, "ataque");
-        this.textoTurno.posX = 100;
-        this.textoTurno.posY = 100;
-        this.textoTurno.escalaX = 1;
-        this.textoTurno.escalaY = 1;
-        this.resizeBuffer.push(this.textoTurno);
+        this.barraEstres = game.add.sprite(50, 50, 'barraEstres', 0);
+        this.barraEstres.posX = 50;
+        this.barraEstres.posY = 50;
+        this.barraEstres.escalaX = 1;
+        this.barraEstres.escalaY = 1;
+        this.resizeBuffer.push(this.barraEstres);
         
-        this.textoStress = game.add.text(500, 100, "stress: 0");
-        this.textoStress.posX = 500;
-        this.textoStress.posY = 100;
-        this.textoStress.escalaX = 1;
-        this.textoStress.escalaY = 1;
-        this.resizeBuffer.push(this.textoStress);
-        
-        this.marcaEspada = game.add.sprite(400, 200, 'marcaEspada');
+        if (game.global.player.side == "ataque") {
+        	this.marcaEspada = game.add.sprite(400, 200, 'marcaEspadaV');
+        } else {
+        	this.marcaEspada = game.add.sprite(400, 200, 'marcaEspada');
+        }
         this.marcaEspada.scale.setTo(0.95, 0.95);
         this.marcaEspada.posX = 400;
         this.marcaEspada.posY = 200;
@@ -50,7 +45,11 @@ Schadenfreude.levelState.prototype = {
         this.marcaEspada.escalaY = 0.95;
         this.resizeBuffer.push(this.marcaEspada);
         
-        this.marcaEscudo = game.add.sprite(653, 200, 'marcaEscudo');
+        if (game.global.player.side == "defensa") {
+        	this.marcaEscudo = game.add.sprite(653, 200, 'marcaEscudoV');
+        } else {
+        	this.marcaEscudo = game.add.sprite(653, 200, 'marcaEscudo');
+        }
         this.marcaEscudo.scale.setTo(0.95, 0.95);
         this.marcaEscudo.posX = 653;
         this.marcaEscudo.posY = 200;
@@ -74,13 +73,13 @@ Schadenfreude.levelState.prototype = {
         this.cardGrabbed = false;
         for (var i = 0; i < 6; i++) {
         	if (game.global.player.hand[i] != -1) {
-        		this.hand[i] = game.add.sprite(100 + i * 175, 600, 'carta' + game.global.player.hand[i] + game.global.lang);
+        		this.hand[i] = game.add.sprite(150 + i * 175, 600, 'carta' + game.global.player.hand[i] + game.global.lang);
             	this.hand[i].scale.setTo(0.2, 0.2);
             	this.hand[i].grabbed = false;
             	this.hand[i].index = i;
             	this.hand[i].inputEnabled = true;
                 
-            	this.hand[i].posX = 100 + i * 175;
+            	this.hand[i].posX = 150 + i * 175;
             	this.hand[i].posY = 600;
             	this.hand[i].escalaX = 0.2;
             	this.hand[i].escalaY = 0.2;
@@ -175,8 +174,8 @@ Schadenfreude.levelState.prototype = {
             	game.global.player.turn = 0;
             	this.playCard(sprite.index);
             } else {
-            	sprite.x = (100 + sprite.index * 175);
-            	sprite.posX = (100 + sprite.index * 175);
+            	sprite.x = (150 + sprite.index * 175);
+            	sprite.posX = (150 + sprite.index * 175);
             	sprite.y = 600;
             	sprite.posY = 600;
             }
@@ -192,8 +191,8 @@ Schadenfreude.levelState.prototype = {
             	game.global.player.turn = 0;
             	this.playCard(sprite.index);
             } else {
-            	sprite.x = (100 + sprite.index * 175);
-            	sprite.posX = (100 + sprite.index * 175);
+            	sprite.x = (150 + sprite.index * 175);
+            	sprite.posX = (150 + sprite.index * 175);
             	sprite.y = 600;
             	sprite.posY = 600;
             }
@@ -264,7 +263,7 @@ Schadenfreude.levelState.prototype = {
     			this.cardBackAttack.loadTexture('carta' + game.global.room.attackCard + game.global.lang);
     		}
     		
-    		this.textoStress.setText('Stress: ' + game.global.player.stress);
+    		this.barraEstres.frame = game.global.player.stress;
     		
     		game.global.room.defenseCardPlayed = false;
     	}
@@ -284,7 +283,7 @@ Schadenfreude.levelState.prototype = {
     		}
     		for (var i = 0; i < 6; i++) {
     			if (game.global.player.hand[i] != -1 && this.hand[i] == -1) {
-    				this.hand[i] = game.add.sprite(100 + i * 175, 600, 'carta' + game.global.player.hand[i] + game.global.lang);
+    				this.hand[i] = game.add.sprite(150 + i * 175, 600, 'carta' + game.global.player.hand[i] + game.global.lang);
     	        	this.hand[i].scale.setTo(0.2, 0.2);
     	        	this.hand[i].inputEnabled = true;
     	        	this.hand[i].grabbed = false;
@@ -296,7 +295,7 @@ Schadenfreude.levelState.prototype = {
                     	this.hand[i].events.onDragStop.add(this.onDragStop, this);
                 	}
     	            
-    	        	this.hand[i].posX = 100 + i * 175;
+    	        	this.hand[i].posX = 150 + i * 175;
     	        	this.hand[i].posY = 600;
     	        	this.hand[i].escalaX = 0.2;
     	        	this.hand[i].escalaY = 0.2;
@@ -320,6 +319,24 @@ Schadenfreude.levelState.prototype = {
     		game.global.player.turn = 1;
     		this.resize();
     		game.global.room.beginTurn = false;
+    	}
+    	
+    	if (game.global.room.reDraw) {
+    		for (var i = 0; i < 6; i++) {
+    			if (this.hand[i] != -1) {
+    				this.hand[i].loadTexture('carta' + game.global.player.hand[i] + game.global.lang);
+    			}
+    		}
+    		
+    		if (game.global.player.side = "ataque") {
+    			this.marcaEspada.loadTexture('marcaEspadaV');
+    			this.marcaEscudo.loadTexture('marcaEscudo'); 
+    		} else {
+    			this.marcaEspada.loadTexture('marcaEspada');
+    			this.marcaEscudo.loadTexture('marcaEscudoV'); 
+    		}
+    		
+    		this.barraEstres.frame = game.global.player.stress;
     	}
     },
 }

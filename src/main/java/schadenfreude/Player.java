@@ -59,7 +59,11 @@ public class Player {
 	}
 
 	public void setStress(int stress) {
-		this.stress = stress;
+		if (stress < 0) {
+			this.stress = 0;
+		} else {
+			this.stress = stress;
+		}
 	}
 
 	public int getTurn() {
@@ -125,12 +129,6 @@ public class Player {
 		if (side == "ataque") {
 			side = "defensa";
 			
-			for (int i = 0; i < MAX_HAND_SIZE; i++) {
-				if (hand[i] != null && hand[i].getType() != 5) {
-					hand[i].setId(hand[i].getId() + 25);
-				}
-			}
-			
 			for (int i = 0; i < deck.length; i++) {
 				if (deck[i].getType() != 5) {
 					deck[i].setId(deck[i].getId() + 25);
@@ -138,12 +136,6 @@ public class Player {
 			}
 		} else {
 			side = "ataque";
-			
-			for (int i = 0; i < MAX_HAND_SIZE; i++) {
-				if (hand[i] != null && hand[i].getType() != 5) {
-					hand[i].setId(hand[i].getId() - 25);
-				}
-			}
 			
 			for (int i = 0; i < deck.length; i++) {
 				if (deck[i].getType() != 5) {

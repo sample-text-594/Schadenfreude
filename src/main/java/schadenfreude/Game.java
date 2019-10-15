@@ -420,6 +420,7 @@ public class Game {
 		
 		attackPlayer.swapSide();
 		defensePlayer.swapSide();
+		time = "mañana";
 		
 		Player auxPlayer = attackPlayer;
 		attackPlayer = defensePlayer;
@@ -460,7 +461,8 @@ public class Game {
 		}
 		
 		msg.put("event", "SIDE SWAP");
-		msg.put("stress", attackPlayer.getStress());
+		msg.put("stress", defensePlayer.getStress());
+		msg.put("side", attackPlayer.getSide());
 		
 		msg.putPOJO("hand", cardArray1);
 		msg.putPOJO("handTypes", cardArrayType1);
@@ -472,6 +474,8 @@ public class Game {
 			System.err.println("Exception sending SIDE SWAP message");
 			e.printStackTrace(System.err);
 		}
+		
+		msg.put("side", defensePlayer.getSide());
 		
 		msg.replace("hand", cardArray2);
 		msg.replace("handTypes", cardArrayType2);
@@ -505,7 +509,7 @@ public class Game {
 					break;
 			}
 			
-			turn = 1;
+			turn = 0;
 		}
 	}
 	

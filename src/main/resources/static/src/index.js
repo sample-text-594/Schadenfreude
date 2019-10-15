@@ -51,7 +51,8 @@ window.onload = function() {
 				defenseCardPlayed : false,
 				defenseCard : -1,
 				beginTurn : false,
-				time : 'mañana'
+				time : 'mañana',
+				reDraw : false
 			}
 			break;
 		case 'ATTACK CARD PLAYED':
@@ -80,6 +81,19 @@ window.onload = function() {
 				game.global.room.cardsAllowed = msg.cardsAllowed;
 			}
 			game.global.room.beginTurn = true;
+			break;
+		case 'SIDE SWAP':
+			game.global.player.hand = msg.hand;
+			game.global.player.handTypes = msg.handTypes;
+			game.global.player.stress = msg.stress;
+			game.global.player.side = msg.side;
+			
+			game.global.room.cardsAllowed = msg.cardsAllowed;
+			game.global.room.time = "mañana";
+			game.global.room.timeRotate = true;
+			
+			game.global.room.reDraw = true;
+			console.dir(msg);
 			break;
 		default :
 			console.dir(msg);
