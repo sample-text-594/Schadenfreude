@@ -17,14 +17,23 @@ Schadenfreude.hiscoreState.prototype = {
     },
 
     create: function() {
-        backB = game.add.button(605, 460, 'ok', backButton, this);
-        backB.posX = 605;
-        backB.posY = 460;
+        
+        this.fondo = game.add.sprite(0, 0, 'fondo');
+        this.fondo.scale.setTo(1.2, 2);
+        this.fondo.posX = 0;
+        this.fondo.posY = 0;
+        this.fondo.escalaX = 2;
+        this.fondo.escalaY = 2;
+        this.resizeBuffer.push(this.fondo);
+
+        backB = game.add.button(0, 0, 'atras', backButton, this);
+        backB.posX = 20;
+        backB.posY = 630;
         backB.escalaX = 1;
         backB.escalaY = 1;
         this.resizeBuffer.push(backB);
         
-        this.resize();
+        this.resize();        
     },
     
     resize: function() {

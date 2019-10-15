@@ -36,6 +36,24 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('marcaEspada', 'assets/interface/marcaEspada.png');
         game.load.image('ruedaHoras', 'assets/interface/ruedaHoras.png');
         game.load.image('fondo', 'assets/interface/fondo.png');
+        game.load.image('esFlag', 'assets/interface/español.png');
+        game.load.image('enFlag', 'assets/interface/ingles.png');        
+        game.load.image('mainTitle', 'assets/interface/mainTitle.png');        
+        game.load.image('mainTitle+playB', 'assets/interface/mainTitle+playB.png');        
+        game.load.image('settingsB', 'assets/interface/ajustes.png');        
+        game.load.image('credsB', 'assets/interface/bCreditos.png');        
+        game.load.image('playB', 'assets/interface/ClickToPlay.png');        
+        game.load.image('hScoreB', 'assets/interface/highscore.png');        
+        game.load.image('langB', 'assets/interface/langButton.png');        
+        game.load.image('mas', 'assets/interface/mas.png');        
+        game.load.image('menos', 'assets/interface/menos.png');        
+        game.load.image('atras', 'assets/interface/atras.png');
+        game.load.image('sonido', 'assets/interface/sonido.png');                
+        game.load.image('score', 'assets/interface/score.png');
+        game.load.image('okB', 'assets/interface/ok.png');
+        game.load.image('win', 'assets/interface/ganaste.png');
+        game.load.image('tie', 'assets/interface/empataste.png');
+        game.load.image('lose', 'assets/interface/perdiste.png');
         
         //Cargamos las cartas en español
         for (var i = 0; i < 50; i++) {

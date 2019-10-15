@@ -26,18 +26,18 @@ Schadenfreude.languageState.prototype = {
         this.fondo.escalaY = 2;
         this.resizeBuffer.push(this.fondo);
         
-        var flag1 = game.add.button(0, 0, 'esFlag', espButton, this);
-        flag1.scale.setTo(0.5, 0.5);
-        flag1.posX = -100;
-        flag1.posY = 100;
+        var flag1 = game.add.button(250, 200, 'esFlag', espButton, this);
+        flag1.scale.setTo(0.75, 0.75);
+        flag1.posX = 250;
+        flag1.posY = 200;
         flag1.escalaX = 0.75;
         flag1.escalaY = 0.75;
         this.resizeBuffer.push(flag1);
         
-        var flag2 = game.add.button(0, 0, 'enFlag', engButton, this);
-        flag2.scale.setTo(0.5, 0.5);
-        flag2.posX = 500;
-        flag2.posY = 100;
+        var flag2 = game.add.button(650, 200, 'enFlag', engButton, this);
+        flag2.scale.setTo(0.75, 0.75);
+        flag2.posX = 650;
+        flag2.posY = 200;
         flag2.escalaX = 0.75;
         flag2.escalaY = 0.75;
         this.resizeBuffer.push(flag2);

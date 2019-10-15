@@ -17,10 +17,36 @@ Schadenfreude.endgameState.prototype = {
     },
 
     create: function() {
+        
+        var score = 10;
+        var scoreRival = 20;
 
-        var score = 0;
-        var scoreRival = 0;
-        nextB = game.add.button(605, 460, 'ok', function () {
+        this.fondo = game.add.sprite(0, 0, 'fondo');
+    	this.fondo.scale.setTo(1.2, 2);
+        this.fondo.posX = 0;
+        this.fondo.posY = 0;
+        this.fondo.escalaX = 2;
+        this.fondo.escalaY = 2;
+        this.resizeBuffer.push(this.fondo);
+
+        this.scoreimg = game.add.sprite(0, 0, 'score');
+    	this.scoreimg.scale.setTo(1.2, 2);
+        this.scoreimg.posX = 55;
+        this.scoreimg.posY = 0;
+        this.scoreimg.escalaX = 1;
+        this.scoreimg.escalaY = 1;
+        this.resizeBuffer.push(this.scoreimg);
+        
+        var text = score + " - " + scoreRival;
+        var style = { font: "125px Arial", fill: "#ffffff", align: "center" };
+        var text = game.add.text(500, 300, text, style);
+        text.posX = 450;
+        text.posY = 300;
+        text.escalaX = 1;
+        text.escalaY = 1;
+        this.resizeBuffer.push(text);
+
+        nextB = game.add.button(0, 0, 'okB', function () {
             if (score > scoreRival){
                 game.state.start('winState');    
             } else if (score == scoreRival){
@@ -29,8 +55,8 @@ Schadenfreude.endgameState.prototype = {
                 game.state.start('loseState');    
             }
         }, this);
-        nextB.posX = 605;
-        nextB.posY = 460;
+        nextB.posX = 590;
+        nextB.posY = 500;
         nextB.escalaX = 1;
         nextB.escalaY = 1;
         this.resizeBuffer.push(nextB);
