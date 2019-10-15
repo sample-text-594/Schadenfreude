@@ -65,6 +65,14 @@ Schadenfreude.menuState.prototype = {
         langB.escalaY = 0.9;
         this.resizeBuffer.push(langB);
         
+        tutB = game.add.button(1080, 20, 'okB', tutButton, this);
+        tutB.scale.setTo(0.9, 0.9);
+        tutB.posX = 1080;
+        tutB.posY = 320;
+        tutB.escalaX = 0.9;
+        tutB.escalaY = 0.9;
+        this.resizeBuffer.push(tutB);
+        
         this.resize();
     },
     
@@ -107,4 +115,8 @@ function credsButton() {
 
 function langButton() {
     game.state.start('languageState');    
+}
+
+function tutButton() {
+    game.state.start('tutorialState');    
 }
