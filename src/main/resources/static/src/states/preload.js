@@ -36,6 +36,14 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('marcaEspada', 'assets/interface/marcaEspada.png');
         game.load.image('ruedaHoras', 'assets/interface/ruedaHoras.png');
         game.load.image('fondo', 'assets/interface/fondo.png');
+        game.load.image('esFlag', 'assets/interface/español.png');
+        game.load.image('enFlag', 'assets/interface/ingles.png');        
+        game.load.image('mainTitle', 'assets/interface/mainTitle.png');        
+        game.load.image('settingsB', 'assets/interface/ajustes.png');        
+        game.load.image('credsB', 'assets/interface/bCreditos.png');        
+        game.load.image('playB', 'assets/interface/ClickToPlay.png');        
+        game.load.image('hScoreB', 'assets/interface/highscore.png');        
+        game.load.image('langB', 'assets/interface/langButton.png');        
         
         //Cargamos las cartas en español
         for (var i = 0; i < 50; i++) {

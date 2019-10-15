@@ -17,30 +17,29 @@ Schadenfreude.languageState.prototype = {
     },
 
     create: function() {
+
+    	this.fondo = game.add.sprite(0, 0, 'fondo');
+    	this.fondo.scale.setTo(1.2, 2);
+        this.fondo.posX = 0;
+        this.fondo.posY = 0;
+        this.fondo.escalaX = 2;
+        this.fondo.escalaY = 2;
+        this.resizeBuffer.push(this.fondo);
         
-        var text = "Elige el idioma:";
-        var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
-        var text = game.add.text(0, 0, text, style);
-        text.posX = 0;
-        text.posY = 0;
-        text.escalaX = 1;
-        text.escalaY = 1;
-        this.resizeBuffer.push(text);
-        
-        var flag1 = game.add.button(game.global.width*0.15, game.global.height*0.4, 'flag1', espButton, this);
+        var flag1 = game.add.button(0, 0, 'esFlag', espButton, this);
         flag1.scale.setTo(0.5, 0.5);
-        flag1.posX = 200;
-        flag1.posY = 300;
-        flag1.escalaX = 0.5;
-        flag1.escalaY = 0.5;
+        flag1.posX = -100;
+        flag1.posY = 100;
+        flag1.escalaX = 0.75;
+        flag1.escalaY = 0.75;
         this.resizeBuffer.push(flag1);
         
-        var flag2 = game.add.button(game.global.width*0.55, game.global.height*0.4, 'flag2', engButton, this);
+        var flag2 = game.add.button(0, 0, 'enFlag', engButton, this);
         flag2.scale.setTo(0.5, 0.5);
-        flag2.posX = 800;
-        flag2.posY = 300;
-        flag2.escalaX = 0.5;
-        flag2.escalaY = 0.5;
+        flag2.posX = 500;
+        flag2.posY = 100;
+        flag2.escalaX = 0.75;
+        flag2.escalaY = 0.75;
         this.resizeBuffer.push(flag2);
         
         this.resize();
