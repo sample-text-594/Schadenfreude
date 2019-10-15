@@ -31,7 +31,7 @@ Schadenfreude.endgameState.prototype = {
 
         this.scoreimg = game.add.sprite(0, 0, 'score');
     	this.scoreimg.scale.setTo(1.2, 2);
-        this.scoreimg.posX = 0;
+        this.scoreimg.posX = 55;
         this.scoreimg.posY = 0;
         this.scoreimg.escalaX = 1;
         this.scoreimg.escalaY = 1;
