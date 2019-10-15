@@ -4,6 +4,7 @@ window.onload = function() {
 	// GLOBAL VARIABLES
 	game.global = {
 		scale : 1,
+		sound : 9,
 		width : 1280,
 		height : 720,
 		FPS : 30,
