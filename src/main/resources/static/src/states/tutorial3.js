@@ -110,7 +110,7 @@ Schadenfreude.tutorial3State.prototype = {
             this.resizeBuffer.push(this.text10);
         }
 
-        this.logo = game.add.sprite(0, 0, 'logo');
+        this.logo = game.add.sprite(0, 0, 'logoT');
         this.logo.scale.setTo(1.2, 2);
         this.logo.posX = 0;
         this.logo.posY = 0;
