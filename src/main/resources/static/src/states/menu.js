@@ -49,21 +49,41 @@ Schadenfreude.menuState.prototype = {
         hiscoreB.escalaY = 0.9;
         this.resizeBuffer.push(hiscoreB);
         
-        credsB = game.add.button(0, 0, 'credsB', credsButton, this);
-        credsB.scale.setTo(0.5, 0.5);
-        credsB.posX = 1170;
-        credsB.posY = 20;
-        credsB.escalaX = 1;
-        credsB.escalaY = 1;
-        this.resizeBuffer.push(credsB);
+        if(game.global.lang == "es"){
+            credsB = game.add.button(0, 0, 'credsBes', credsButton, this);
+            credsB.scale.setTo(0.5, 0.5);
+            credsB.posX = 1170;
+            credsB.posY = 20;
+            credsB.escalaX = 1;
+            credsB.escalaY = 1;
+            this.resizeBuffer.push(credsB);
+        } else {
+            credsB = game.add.button(0, 0, 'credsBen', credsButton, this);
+            credsB.scale.setTo(0.5, 0.5);
+            credsB.posX = 1170;
+            credsB.posY = 20;
+            credsB.escalaX = 1;
+            credsB.escalaY = 1;
+            this.resizeBuffer.push(credsB);
+        }
 
-        langB = game.add.button(1080, 20, 'langB', langButton, this);
-        langB.scale.setTo(0.9, 0.9);
-        langB.posX = 1080;
-        langB.posY = 20;
-        langB.escalaX = 0.9;
-        langB.escalaY = 0.9;
-        this.resizeBuffer.push(langB);
+        if(game.global.lang == "es"){
+            langB = game.add.button(1080, 20, 'langBes', langButton, this);
+            langB.scale.setTo(0.9, 0.9);
+            langB.posX = 1080;
+            langB.posY = 20;
+            langB.escalaX = 0.9;
+            langB.escalaY = 0.9;
+            this.resizeBuffer.push(langB);
+        } else {
+            langB = game.add.button(1080, 20, 'langBen', langButton, this);
+            langB.scale.setTo(0.9, 0.9);
+            langB.posX = 1080;
+            langB.posY = 16;
+            langB.escalaX = 0.9;
+            langB.escalaY = 0.9;
+            this.resizeBuffer.push(langB);
+        }
         
         tutB = game.add.button(1080, 20, 'tutorialB', tutButton, this);
         tutB.scale.setTo(0.9, 0.9);

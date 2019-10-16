@@ -25,13 +25,22 @@ Schadenfreude.matchmakingState.prototype = {
         this.fondo.escalaX = 2;
         this.fondo.escalaY = 2;
         this.resizeBuffer.push(this.fondo);
-        
-        this.searching = game.add.sprite(50, 50, 'buscando', 0);
-        this.searching.posX = 300;
-        this.searching.posY = 250;
-        this.searching.escalaX = 1;
-        this.searching.escalaY = 1;
-        this.resizeBuffer.push(this.searching);
+		
+		if(game.global.lang == "es"){
+			this.searching = game.add.sprite(50, 50, 'buscando', 0);
+			this.searching.posX = 300;
+			this.searching.posY = 250;
+			this.searching.escalaX = 1;
+			this.searching.escalaY = 1;
+			this.resizeBuffer.push(this.searching);
+		} else {
+			this.searching = game.add.sprite(50, 50, 'searching', 0);
+			this.searching.posX = 300;
+			this.searching.posY = 250;
+			this.searching.escalaX = 1;
+			this.searching.escalaY = 1;
+			this.resizeBuffer.push(this.searching);
+		}
         
     	let msg = new Object();
     	
