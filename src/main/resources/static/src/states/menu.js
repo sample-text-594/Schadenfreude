@@ -65,10 +65,10 @@ Schadenfreude.menuState.prototype = {
         langB.escalaY = 0.9;
         this.resizeBuffer.push(langB);
         
-        tutB = game.add.button(1080, 20, 'okB', tutButton, this);
+        tutB = game.add.button(1080, 20, 'tutorialB', tutButton, this);
         tutB.scale.setTo(0.9, 0.9);
-        tutB.posX = 1170;
-        tutB.posY = 300;
+        tutB.posX = 1110;
+        tutB.posY = 340;
         tutB.escalaX = 0.9;
         tutB.escalaY = 0.9;
         this.resizeBuffer.push(tutB);

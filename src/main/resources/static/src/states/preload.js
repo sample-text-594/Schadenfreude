@@ -59,6 +59,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('tie', 'assets/interface/empataste.png');
         game.load.image('lose', 'assets/interface/perdiste.png');
         game.load.image('buscando', 'assets/interface/buscando.png');
+        game.load.image('tutorialB', 'assets/interface/tutorial.png');
         
         //Cargamos las cartas en español
         for (var i = 0; i < 50; i++) {
