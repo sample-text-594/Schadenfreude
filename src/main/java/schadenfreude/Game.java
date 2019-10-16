@@ -165,6 +165,29 @@ public class Game {
 		return arr;
 	}
 	
+	private void advanceTime() {
+		if (turn < 1) {
+			turn++;
+		} else {
+			switch (time) {
+				case ("mañana"):
+					time = "mediodia";
+					break;
+				case ("mediodia"):
+					time = "tarde";
+					break;
+				case ("tarde"):
+					time = "noche";
+					break;
+				case ("noche"):
+					time = "turnOver";
+					break;
+			}
+			
+			turn = 0;
+		}
+	}
+	
 	private void startGame() {
 		ObjectNode msg;
 		ArrayNode cardArray1;
@@ -251,15 +274,23 @@ public class Game {
 		
 		msg = mapper.createObjectNode();
 		
-		if (id == attackPlayer.getId()) {
-			c = attackPlayer.useCard(cardPos);
-			attackCard = c;
-			
-			attackPlayer.setTurn(0);
-			defensePlayer.setTurn(1);
-			
+		if (id == attackPlayer.getId()) {									//Si la carta la ha jugado el atacante
 			msg.put("event", "ATTACK CARD PLAYED");
-			msg.put("cardType", c.getType());
+			if (cardPos != -1) {											  //Si se ha jugado carta
+				c = attackPlayer.useCard(cardPos);
+				attackCard = c;
+				
+				attackPlayer.setTurn(0);
+				defensePlayer.setTurn(1);
+				
+				msg.put("cardType", c.getType());
+			} else {														  //Si se ha pasado el turno
+				attackPlayer.setTurn(0);
+				defensePlayer.setTurn(1);
+				
+				msg.put("cardType", -1);
+			}
+			
 			
 			try {
 				defensePlayer.getSession().sendMessage(new TextMessage(msg.toString()));
@@ -269,33 +300,49 @@ public class Game {
 			}
 			
 			beginTurn("defensa");
-		} else {
-			c = defensePlayer.useCard(cardPos);
-			
-			int stressMod;
-			if (c.getType() != 5) {
-				stressMod = attackCard.getStress() + c.getStress();
-			} else {
-				stressMod = attackCard.getStress() - c.getStress();
-			}
-			if (c.getSynergyID() == attackCard.getId()) {
-				stressMod += c.getSynergyModifier();
-			} else if (attackCard.getSynergyID() == c.getId()) {
-				stressMod += attackCard.getSynergyModifier();
-			}
-			
-			defensePlayer.setStress(defensePlayer.getStress() + stressMod);
-			
+		} else {															//Si la carta la ha jugado el defensor
 			msg.put("event", "DEFENSE CARD PLAYED");
-			if (attackCard.getType() != 5) {
-				msg.put("attackCardId", attackCard.getId());
-			} else {
-				msg.put("attackCardId", attackCard.getId() + "a");
-			}
-			if (c.getType() != 5) {
-				msg.put("defenseCardId", c.getId());
-			} else {
-				msg.put("defenseCardId", c.getId() + "b");
+			if (cardPos != -1) {											  //Si se ha jugado carta
+				c = defensePlayer.useCard(cardPos);
+				
+				int stressMod;
+				if (c.getType() != 5) {
+					stressMod = attackCard.getStress() + c.getStress();
+				} else {
+					stressMod = attackCard.getStress() - c.getStress();
+				}
+				if (c.getSynergyID() == attackCard.getId()) {
+					stressMod += c.getSynergyModifier();
+				} else if (attackCard.getSynergyID() == c.getId()) {
+					stressMod += attackCard.getSynergyModifier();
+				}
+				
+				defensePlayer.setStress(defensePlayer.getStress() + stressMod);
+				
+				if (attackCard.getType() != 5) {
+					msg.put("attackCardId", attackCard.getId());
+				} else {
+					msg.put("attackCardId", attackCard.getId() + "a");
+				}
+				if (c.getType() != 5) {
+					msg.put("defenseCardId", c.getId());
+				} else {
+					msg.put("defenseCardId", c.getId() + "b");
+				}
+			} else {														  //Si se ha pasado el turno
+				if (attackCard != null) {									    //Si el atacante había jugado carta
+					defensePlayer.setStress(defensePlayer.getStress() + attackCard.getStress());
+					
+					if (attackCard.getType() != 5) {
+						msg.put("attackCardId", attackCard.getId());
+					} else {
+						msg.put("attackCardId", attackCard.getId() + "a");
+					}
+					msg.put("defenseCardId", -1);
+				} else {													    //Si el atacante no había jugado carta
+					msg.put("attackCardId", -1);
+					msg.put("defenseCardId", -1);
+				}
 			}
 			msg.put("stress", defensePlayer.getStress());
 			
@@ -490,26 +537,21 @@ public class Game {
 		beginTurn("ataque");
 	}
 	
-	private void advanceTime() {
-		if (turn < 1) {
-			turn++;
-		} else {
-			switch (time) {
-				case ("mañana"):
-					time = "mediodia";
-					break;
-				case ("mediodia"):
-					time = "tarde";
-					break;
-				case ("tarde"):
-					time = "noche";
-					break;
-				case ("noche"):
-					time = "turnOver";
-					break;
-			}
-			
-			turn = 0;
+	private void endGame() {
+		ObjectNode msg;
+		
+		msg = mapper.createObjectNode();
+		
+		msg.put("event", "END GAME");
+		msg.put("attackStress", attackPlayer.getStress());
+		msg.put("defenseStress", defensePlayer.getStress());
+		
+		try {
+			attackPlayer.getSession().sendMessage(new TextMessage(msg.toString()));
+			defensePlayer.getSession().sendMessage(new TextMessage(msg.toString()));
+		} catch (IOException e) {
+			System.err.println("Exception sending END GAME message");
+			e.printStackTrace(System.err);
 		}
 	}
 	
@@ -517,6 +559,9 @@ public class Game {
 		switch (node.get("event").asText()) {
 			case "PLAY CARD":
 				playCard(playerID, node.get("index").asInt());
+				break;
+			case "END GAME":
+				endGame();
 				break;
 		}
 	}
