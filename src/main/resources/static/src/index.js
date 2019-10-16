@@ -3,6 +3,9 @@ window.onload = function() {
 
 	// GLOBAL VARIABLES
 	game.global = {
+
+        score : 2,
+        scoreRival : 2,
 		scale : 1,
 		sound : 9,
 		width : 1280,

@@ -17,9 +17,6 @@ Schadenfreude.endgameState.prototype = {
     },
 
     create: function() {
-        
-        var score = 10;
-        var scoreRival = 20;
 
         this.fondo = game.add.sprite(0, 0, 'fondo');
     	this.fondo.scale.setTo(1.2, 2);
@@ -31,31 +28,39 @@ Schadenfreude.endgameState.prototype = {
 
         this.scoreimg = game.add.sprite(0, 0, 'score');
     	this.scoreimg.scale.setTo(1.2, 2);
-        this.scoreimg.posX = 55;
-        this.scoreimg.posY = 0;
+        this.scoreimg.posX = 460;
+        this.scoreimg.posY = 80;
         this.scoreimg.escalaX = 1;
         this.scoreimg.escalaY = 1;
         this.resizeBuffer.push(this.scoreimg);
         
-        var text = score + " - " + scoreRival;
-        var style = { font: "125px Arial", fill: "#ffffff", align: "center" };
+        if(game.global.score < 10 && game.global.scoreRival < 10){
+            var text = "0" + game.global.score + " - " + "0" + game.global.scoreRival;            
+        } else if(game.global.score < 10 && game.global.scoreRival > 10){
+            var text = "0" + game.global.score + " - " + game.global.scoreRival;            
+        } else if(game.global.score > 10 && game.global.scoreRival < 10){
+            var text = game.global.score + " - " + "0" + game.global.scoreRival;            
+        } else {
+            var text = game.global.score + " - " + game.global.scoreRival;            
+        }
+        var style = { font: "125px Arial", fill: "#555555", align: "center" };
         var text = game.add.text(500, 300, text, style);
         text.posX = 450;
-        text.posY = 300;
+        text.posY = 320;
         text.escalaX = 1;
         text.escalaY = 1;
         this.resizeBuffer.push(text);
 
         nextB = game.add.button(0, 0, 'okB', function () {
-            if (score > scoreRival){
+            if (game.global.score > game.global.scoreRival){
                 game.state.start('winState');    
-            } else if (score == scoreRival){
+            } else if (game.global.score == game.global.scoreRival){
                 game.state.start('tieState');
             } else {
                 game.state.start('loseState');    
             }
         }, this);
-        nextB.posX = 590;
+        nextB.posX = 580;
         nextB.posY = 500;
         nextB.escalaX = 1;
         nextB.escalaY = 1;
