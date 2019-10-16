@@ -15,6 +15,9 @@ Schadenfreude.bootState.prototype = {
 	preload : function() {
 		this.game.renderer.renderSession.roundPixels = true
 		this.time.desiredFps = game.global.FPS
+
+        game.load.spritesheet('loading', 'assets/interface/spritesheetCargando.png', 931, 56);
+        game.load.image('fondo', 'assets/interface/fondo.png');
 	},
 
 	create : function() {

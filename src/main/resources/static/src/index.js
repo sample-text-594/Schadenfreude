@@ -115,7 +115,8 @@ window.onload = function() {
 	game.state.add('settingsState', Schadenfreude.settingsState)
 	game.state.add('hiscoreState', Schadenfreude.hiscoreState)
 	game.state.add('creditsState', Schadenfreude.creditsState)
-
+	game.state.add('tutorialState', Schadenfreude.tutorialState)
+	
 	game.state.start('bootState')
 
 }

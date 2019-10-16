@@ -28,7 +28,7 @@ Schadenfreude.languageState.prototype = {
         
         var flag1 = game.add.button(250, 200, 'esFlag', espButton, this);
         flag1.scale.setTo(0.75, 0.75);
-        flag1.posX = 250;
+        flag1.posX = 225;
         flag1.posY = 200;
         flag1.escalaX = 0.75;
         flag1.escalaY = 0.75;
@@ -36,7 +36,7 @@ Schadenfreude.languageState.prototype = {
         
         var flag2 = game.add.button(650, 200, 'enFlag', engButton, this);
         flag2.scale.setTo(0.75, 0.75);
-        flag2.posX = 650;
+        flag2.posX = 700;
         flag2.posY = 200;
         flag2.escalaX = 0.75;
         flag2.escalaY = 0.75;
