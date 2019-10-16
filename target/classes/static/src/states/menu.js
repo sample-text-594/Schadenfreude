@@ -27,7 +27,7 @@ Schadenfreude.menuState.prototype = {
         this.resizeBuffer.push(this.fondo);
 
         playB = game.add.button(300, 50, 'mainTitle+playB', playButton, this);
-        playB.posX = 250;
+        playB.posX = 320;
         playB.posY = 50;
         playB.escalaX = 1;
         playB.escalaY = 1;
@@ -67,8 +67,8 @@ Schadenfreude.menuState.prototype = {
         
         tutB = game.add.button(1080, 20, 'okB', tutButton, this);
         tutB.scale.setTo(0.9, 0.9);
-        tutB.posX = 1080;
-        tutB.posY = 320;
+        tutB.posX = 1170;
+        tutB.posY = 300;
         tutB.escalaX = 0.9;
         tutB.escalaY = 0.9;
         this.resizeBuffer.push(tutB);

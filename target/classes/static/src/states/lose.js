@@ -28,7 +28,7 @@ Schadenfreude.loseState.prototype = {
 
         this.lose = game.add.sprite(0, 0, 'lose');
         this.lose.scale.setTo(1.2, 2);
-        this.lose.posX = 390;
+        this.lose.posX = 430;
         this.lose.posY = 150;
         this.lose.escalaX = 1;
         this.lose.escalaY = 1;

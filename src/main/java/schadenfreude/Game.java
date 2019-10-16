@@ -24,6 +24,7 @@ public class Game {
 	
 	private String time;
 	private int turn;
+	private boolean lastRound;
 	
 	private final int START_HAND_SIZE = 5;
 	
@@ -361,7 +362,11 @@ public class Game {
 			if (time != "turnOver") {
 				beginTurn("ataque");
 			} else {
-				swapRoles();
+				if (!lastRound) {
+					swapRoles();
+				} else {
+					endGame();
+				}
 			}
 		}
 	}

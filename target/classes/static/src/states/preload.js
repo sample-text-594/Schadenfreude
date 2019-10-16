@@ -13,23 +13,25 @@ Schadenfreude.preloadState.prototype = {
     },
 
     preload: function() {
-    	this.resizeBuffer = [];
-
-        var text = "Loading...";
-        var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
-        var text = game.add.text(500, 300, text, style);
-        text.posX = 500;
-        text.posY = 300;
-        text.escalaX = 1;
-        text.escalaY = 1;
-        this.resizeBuffer.push(text);
         
-        //Load Assets
-        game.load.image('blankcard', 'assets/Card.png');
-        game.load.image('flag1', 'assets/flag.png');
-        game.load.image('flag2', 'assets/redflag.png');
-        game.load.image('arrow', 'assets/arrow.png');
-        game.load.image('ok', 'assets/ok.png');
+        this.resizeBuffer = [];
+        
+        this.fondo = game.add.sprite(0, 0, 'fondo');
+    	this.fondo.scale.setTo(2, 2);
+        this.fondo.posX = 0;
+        this.fondo.posY = 0;
+        this.fondo.escalaX = 2;
+        this.fondo.escalaY = 2;
+        this.resizeBuffer.push(this.fondo);
+        
+        this.barraEstres = game.add.sprite(50, 50, 'loading', 0);
+        this.barraEstres.posX = 225;
+        this.barraEstres.posY = 320;
+        this.barraEstres.escalaX = 1;
+        this.barraEstres.escalaY = 1;
+        this.resizeBuffer.push(this.barraEstres);
+
+    	this.resize();
         
         //Interfaz
         game.load.image('marcaEscudo', 'assets/interface/marcaEscudo.png');
@@ -38,7 +40,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('marcaEspadaV', 'assets/interface/marcaEspadaV.png');
         game.load.spritesheet('barraEstres', 'assets/interface/spritesheetBarra.png', 120, 646);
         game.load.image('ruedaHoras', 'assets/interface/ruedaHoras.png');
-        game.load.image('fondo', 'assets/interface/fondo.png');
+        game.load.image('pasarB', 'assets/interface/pasar.png');
         game.load.image('esFlag', 'assets/interface/español.png');
         game.load.image('enFlag', 'assets/interface/ingles.png');        
         game.load.image('mainTitle', 'assets/interface/mainTitle.png');        
@@ -57,6 +59,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('win', 'assets/interface/ganaste.png');
         game.load.image('tie', 'assets/interface/empataste.png');
         game.load.image('lose', 'assets/interface/perdiste.png');
+        game.load.image('buscando', 'assets/interface/buscando.png');
         
         //Cargamos las cartas en español
         for (var i = 0; i < 50; i++) {
@@ -79,6 +82,7 @@ Schadenfreude.preloadState.prototype = {
         }
         
         //Cargamos los reversos
+        game.load.image('-1back', 'assets/backs/General_reverso.png');
         game.load.image('0back', 'assets/backs/Transporte_reverso.png');
         game.load.image('1back', 'assets/backs/Alimentacion_reverso.png');
         game.load.image('2back', 'assets/backs/Hogar_reverso.png');
@@ -88,10 +92,11 @@ Schadenfreude.preloadState.prototype = {
     },
 
     create: function() {
-    	this.resize();
+
     },
     
     resize: function() {
+
     	var scaleRatioX = game.scale.width / 1280;
     	var scaleRatioY = game.scale.height / 720;
     	

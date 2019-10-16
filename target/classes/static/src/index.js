@@ -3,6 +3,9 @@ window.onload = function() {
 
 	// GLOBAL VARIABLES
 	game.global = {
+
+        score : 2,
+        scoreRival : 2,
 		scale : 1,
 		sound : 9,
 		width : 1280,
@@ -56,7 +59,11 @@ window.onload = function() {
 			}
 			break;
 		case 'ATTACK CARD PLAYED':
-			game.global.room.cardsAllowed = [msg.cardType, 5];
+			if (msg.cardType == -1) {
+				game.global.room.cardsAllowed = [-1];
+			} else {
+				game.global.room.cardsAllowed = [msg.cardType, 5];
+			}
 			game.global.room.attackCardPlayed = true;
 			break;
 		case 'DEFENSE CARD PLAYED':
@@ -95,6 +102,15 @@ window.onload = function() {
 			game.global.room.reDraw = true;
 			console.dir(msg);
 			break;
+		case 'END GAME':
+			if (game.global.player.side == "ataque") {
+				game.global.score = msg.attackStress;
+				game.global.scoreRival = msg.defenseStress;
+			} else {
+				game.global.score = msg.defenseStress;
+				game.global.scoreRival = msg.attackStress;
+			}
+			break;
 		default :
 			console.dir(msg);
 			break;
@@ -115,7 +131,8 @@ window.onload = function() {
 	game.state.add('settingsState', Schadenfreude.settingsState)
 	game.state.add('hiscoreState', Schadenfreude.hiscoreState)
 	game.state.add('creditsState', Schadenfreude.creditsState)
-
+	game.state.add('tutorialState', Schadenfreude.tutorialState)
+	
 	game.state.start('bootState')
 
 }

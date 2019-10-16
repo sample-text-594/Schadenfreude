@@ -40,6 +40,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('marcaEspadaV', 'assets/interface/marcaEspadaV.png');
         game.load.spritesheet('barraEstres', 'assets/interface/spritesheetBarra.png', 120, 646);
         game.load.image('ruedaHoras', 'assets/interface/ruedaHoras.png');
+        game.load.image('pasarB', 'assets/interface/pasar.png');
         game.load.image('esFlag', 'assets/interface/español.png');
         game.load.image('enFlag', 'assets/interface/ingles.png');        
         game.load.image('mainTitle', 'assets/interface/mainTitle.png');        
@@ -59,7 +60,6 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('tie', 'assets/interface/empataste.png');
         game.load.image('lose', 'assets/interface/perdiste.png');
         game.load.image('buscando', 'assets/interface/buscando.png');
-        game.load.image('tutorialB', 'assets/interface/tutorial.png');
         
         //Cargamos las cartas en español
         for (var i = 0; i < 50; i++) {
@@ -82,6 +82,7 @@ Schadenfreude.preloadState.prototype = {
         }
         
         //Cargamos los reversos
+        game.load.image('-1back', 'assets/backs/General_reverso.png');
         game.load.image('0back', 'assets/backs/Transporte_reverso.png');
         game.load.image('1back', 'assets/backs/Alimentacion_reverso.png');
         game.load.image('2back', 'assets/backs/Hogar_reverso.png');

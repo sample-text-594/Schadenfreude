@@ -17,15 +17,21 @@ Schadenfreude.matchmakingState.prototype = {
     },
 
     create: function() {
-    	var text = "Buscando partida...";
-        var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
-        var text = game.add.text(500, 300, text, style);
-        text.posX = 500;
-        text.posY = 300;
-        text.escalaX = 1;
-        text.escalaY = 1;
-        this.resizeBuffer.push(text);
+		
+		this.fondo = game.add.sprite(0, 0, 'fondo');
+    	this.fondo.scale.setTo(2, 2);
+        this.fondo.posX = 0;
+        this.fondo.posY = 0;
+        this.fondo.escalaX = 2;
+        this.fondo.escalaY = 2;
+        this.resizeBuffer.push(this.fondo);
         
+        this.searching = game.add.sprite(50, 50, 'buscando', 0);
+        this.searching.posX = 300;
+        this.searching.posY = 250;
+        this.searching.escalaX = 1;
+        this.searching.escalaY = 1;
+        this.resizeBuffer.push(this.searching);
         
     	let msg = new Object();
     	

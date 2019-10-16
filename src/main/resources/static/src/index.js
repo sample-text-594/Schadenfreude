@@ -59,7 +59,11 @@ window.onload = function() {
 			}
 			break;
 		case 'ATTACK CARD PLAYED':
-			game.global.room.cardsAllowed = [msg.cardType, 5];
+			if (msg.cardType == -1) {
+				game.global.room.cardsAllowed = [-1];
+			} else {
+				game.global.room.cardsAllowed = [msg.cardType, 5];
+			}
 			game.global.room.attackCardPlayed = true;
 			break;
 		case 'DEFENSE CARD PLAYED':
@@ -97,6 +101,15 @@ window.onload = function() {
 			
 			game.global.room.reDraw = true;
 			console.dir(msg);
+			break;
+		case 'END GAME':
+			if (game.global.player.side == "ataque") {
+				game.global.score = msg.attackStress;
+				game.global.scoreRival = msg.defenseStress;
+			} else {
+				game.global.score = msg.defenseStress;
+				game.global.scoreRival = msg.attackStress;
+			}
 			break;
 		default :
 			console.dir(msg);

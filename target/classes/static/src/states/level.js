@@ -33,6 +33,13 @@ Schadenfreude.levelState.prototype = {
         this.barraEstres.escalaY = 1;
         this.resizeBuffer.push(this.barraEstres);
         
+        this.botonPasar = game.add.button(545, 100, 'pasarB', function() {this.playCard(-1)}, this);
+        this.botonPasar.posX = 545;
+        this.botonPasar.posY = 100;
+        this.botonPasar.escalaX = 1;
+        this.botonPasar.escalaY = 1;
+        this.resizeBuffer.push(this.botonPasar);
+        
         if (game.global.player.side == "ataque") {
         	this.marcaEspada = game.add.sprite(400, 200, 'marcaEspadaV');
         } else {
@@ -257,10 +264,14 @@ Schadenfreude.levelState.prototype = {
     	
     	if (game.global.room.defenseCardPlayed) {
     		if (game.global.player.side == "ataque") {
-    			this.cardBackDefense.loadTexture('carta' + game.global.room.defenseCard + game.global.lang);
-        		this.cardBackDefense.revive();
+    			if (game.global.room.defenseCard != -1) {
+    				this.cardBackDefense.loadTexture('carta' + game.global.room.defenseCard + game.global.lang);
+            		this.cardBackDefense.revive();
+    			}
     		} else {
-    			this.cardBackAttack.loadTexture('carta' + game.global.room.attackCard + game.global.lang);
+    			if (game.global.room.attackCard != -1) {
+    				this.cardBackAttack.loadTexture('carta' + game.global.room.attackCard + game.global.lang);
+    			}
     		}
     		
     		this.barraEstres.frame = game.global.player.stress;
