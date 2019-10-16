@@ -34,6 +34,8 @@ Schadenfreude.preloadState.prototype = {
     	this.resize();
         
         //Interfaz
+
+        //Level
         game.load.image('marcaEscudo', 'assets/interface/marcaEscudo.png');
         game.load.image('marcaEscudoV', 'assets/interface/marcaEscudoV.png');
         game.load.image('marcaEspada', 'assets/interface/marcaEspada.png');
@@ -41,8 +43,12 @@ Schadenfreude.preloadState.prototype = {
         game.load.spritesheet('barraEstres', 'assets/interface/spritesheetBarra.png', 120, 646);
         game.load.image('ruedaHoras', 'assets/interface/ruedaHoras.png');
         game.load.image('pasarB', 'assets/interface/pasar.png');
+
+        //Idioma
         game.load.image('esFlag', 'assets/interface/español.png');
-        game.load.image('enFlag', 'assets/interface/ingles.png');      
+        game.load.image('enFlag', 'assets/interface/ingles.png');    
+        
+        //Menu
         game.load.image('mainTitlees', 'assets/interface/en/mainTitle+playB.png');
         game.load.image('mainTitleen', 'assets/interface/es/mainTitle+playB.png');
         game.load.image('settingsB', 'assets/interface/ajustes.png');        
@@ -50,19 +56,71 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('credsBen', 'assets/interface/en/bCreditos.png');      
         game.load.image('playB', 'assets/interface/ClickToPlay.png'); 
         game.load.image('langBes', 'assets/interface/es/langButton.png');        
-        game.load.image('langBen', 'assets/interface/en/langButton.png');        
+        game.load.image('langBen', 'assets/interface/en/langButton.png');  
+        game.load.image('tutorialB', 'assets/interface/tutorial.png');        
+        
+        //Volumen
         game.load.image('mas', 'assets/interface/mas.png');        
         game.load.image('menos', 'assets/interface/menos.png');        
         game.load.image('atras', 'assets/interface/atras.png');
-        game.load.image('sonido', 'assets/interface/sonido.png');                
+        game.load.image('sonido', 'assets/interface/sonido.png');
+        
+        //Endgame
         game.load.image('score', 'assets/interface/score.png');
         game.load.image('okB', 'assets/interface/ok.png');
         game.load.image('win', 'assets/interface/ganaste.png');
         game.load.image('tie', 'assets/interface/empataste.png');
         game.load.image('lose', 'assets/interface/perdiste.png');
+
+        //Matchmaking
         game.load.image('buscando', 'assets/interface/es/buscando.png');
         game.load.image('searching', 'assets/interface/en/searching.png');
-        game.load.image('tutorialB', 'assets/interface/tutorial.png');
+
+        //Tutorial
+        game.load.image('flechaI', 'assets/interface/flechaI.png');
+        game.load.image('flechaD', 'assets/interface/flechaD.png');
+        game.load.image('barraL', 'assets/interface/barraL.png');
+        game.load.image('barraV', 'assets/interface/barraV.png');
+        game.load.image('escudo', 'assets/interface/escudo.png');
+        game.load.image('espada', 'assets/interface/espada.png');
+        game.load.image('logo', 'assets/interface/logo.png');
+        game.load.image('repe', 'assets/interface/repe.png');
+        game.load.image('rueda', 'assets/interface/rueda.png');
+        game.load.image('screen', 'assets/interface/screen.png');
+
+        //Textos español
+        game.load.image('titulo', 'assets/interface/es/tutorial/titulo.png');        
+        game.load.image('texto1', 'assets/interface/es/tutorial/texto1.png');
+        game.load.image('texto2', 'assets/interface/es/tutorial/texto2.png');
+        game.load.image('texto3', 'assets/interface/es/tutorial/texto3.png');
+        game.load.image('texto4', 'assets/interface/es/tutorial/texto4.png');
+        game.load.image('texto5', 'assets/interface/es/tutorial/texto5.png');
+        game.load.image('texto6', 'assets/interface/es/tutorial/texto6.png');
+        game.load.image('texto7', 'assets/interface/es/tutorial/texto7.png');
+        game.load.image('texto8', 'assets/interface/es/tutorial/texto8.png');
+        game.load.image('texto9', 'assets/interface/es/tutorial/texto9.png');
+        game.load.image('texto10', 'assets/interface/es/tutorial/texto10.png');
+        game.load.image('texto11', 'assets/interface/es/tutorial/texto11.png');
+        game.load.image('texto12', 'assets/interface/es/tutorial/texto12.png');
+        game.load.image('texto13', 'assets/interface/es/tutorial/texto13.png');
+        game.load.image('texto14', 'assets/interface/es/tutorial/texto14.png');
+
+        //Textos inglés
+        game.load.image('title', 'assets/interface/en/tutorial/titulo.png');        
+        game.load.image('text1', 'assets/interface/en/tutorial/texto1.png');
+        game.load.image('text2', 'assets/interface/en/tutorial/texto2.png');
+        game.load.image('text3', 'assets/interface/en/tutorial/texto3.png');
+        game.load.image('text4', 'assets/interface/en/tutorial/texto4.png');
+        game.load.image('text5', 'assets/interface/en/tutorial/texto5.png');
+        game.load.image('text6', 'assets/interface/en/tutorial/texto6.png');
+        game.load.image('text7', 'assets/interface/en/tutorial/texto7.png');
+        game.load.image('text8', 'assets/interface/en/tutorial/texto8.png');
+        game.load.image('text9', 'assets/interface/en/tutorial/texto9.png');
+        game.load.image('text10', 'assets/interface/en/tutorial/texto10.png');
+        game.load.image('text11', 'assets/interface/en/tutorial/texto11.png');
+        game.load.image('text12', 'assets/interface/en/tutorial/texto12.png');
+        game.load.image('text13', 'assets/interface/en/tutorial/texto13.png');
+        game.load.image('text14', 'assets/interface/en/tutorial/texto14.png');
         
         //Cargamos las cartas en español
         for (var i = 0; i < 50; i++) {

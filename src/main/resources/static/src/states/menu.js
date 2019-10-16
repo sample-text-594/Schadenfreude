@@ -135,5 +135,5 @@ function langButton() {
 }
 
 function tutButton() {
-    game.state.start('tutorialState');    
+    game.state.start('tutorial1State');    
 }
