@@ -76,6 +76,24 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('buscando', 'assets/interface/es/buscando.png');
         game.load.image('searching', 'assets/interface/en/searching.png');
 
+        //Créditos
+        game.load.image('a_game_by', 'assets/interface/creditos/a_game_by.png');
+        game.load.image('alberto', 'assets/interface/creditos/alberto.png');
+        game.load.image('creditosEs', 'assets/interface/creditos/creditos_titulo.png');
+        game.load.image('creditosEn', 'assets/interface/creditos/credits_titulo.png');
+        game.load.image('david', 'assets/interface/creditos/david.png');
+        game.load.image('enrique', 'assets/interface/creditos/enrique.png');
+        game.load.image('facebook', 'assets/interface/creditos/facebook.png');
+        game.load.image('itchio', 'assets/interface/creditos/itchio.png');
+        game.load.image('jorge', 'assets/interface/creditos/jorge.png');
+        game.load.image('juanje', 'assets/interface/creditos/juanje.png');
+        game.load.image('logo', 'assets/interface/creditos/logo.png');
+        game.load.image('mario', 'assets/interface/creditos/mario.png');
+        game.load.image('sandra', 'assets/interface/creditos/sandra.png');
+        game.load.image('twitter', 'assets/interface/creditos/twitter.png');
+        game.load.image('web', 'assets/interface/creditos/web.png');
+        game.load.image('youtube', 'assets/interface/creditos/youtube.png');
+        
         //Tutorial
         game.load.image('flechaI', 'assets/interface/flechaI.png');
         game.load.image('flechaD', 'assets/interface/flechaD.png');
