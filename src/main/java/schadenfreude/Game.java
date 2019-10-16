@@ -167,25 +167,30 @@ public class Game {
 	}
 	
 	private void advanceTime() {
-		if (turn < 1) {
-			turn++;
-		} else {
-			switch (time) {
-				case ("mañana"):
-					time = "mediodia";
-					break;
-				case ("mediodia"):
-					time = "tarde";
-					break;
-				case ("tarde"):
-					time = "noche";
-					break;
-				case ("noche"):
-					time = "turnOver";
-					break;
-			}
-			
+		if (defensePlayer.getStress() == 15) {
+			time = "turnOver";
 			turn = 0;
+		} else {
+			if (turn < 1) {
+				turn++;
+			} else {
+				switch (time) {
+					case ("mañana"):
+						time = "mediodia";
+						break;
+					case ("mediodia"):
+						time = "tarde";
+						break;
+					case ("tarde"):
+						time = "noche";
+						break;
+					case ("noche"):
+						time = "turnOver";
+						break;
+				}
+				
+				turn = 0;
+			}
 		}
 	}
 	
@@ -346,6 +351,7 @@ public class Game {
 				}
 			}
 			msg.put("stress", defensePlayer.getStress());
+			attackCard = null;
 			
 			try {
 				attackPlayer.getSession().sendMessage(new TextMessage(msg.toString()));
@@ -363,6 +369,7 @@ public class Game {
 				beginTurn("ataque");
 			} else {
 				if (!lastRound) {
+					lastRound = true;
 					swapRoles();
 				} else {
 					endGame();

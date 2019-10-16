@@ -132,6 +132,7 @@ public class Player {
 			for (int i = 0; i < deck.length; i++) {
 				if (deck[i].getType() != 5) {
 					deck[i].setId(deck[i].getId() + 25);
+					deck[i].setStress(-deck[i].getStress());
 				}
 			}
 		} else {
@@ -140,6 +141,7 @@ public class Player {
 			for (int i = 0; i < deck.length; i++) {
 				if (deck[i].getType() != 5) {
 					deck[i].setId(deck[i].getId() - 25);
+					deck[i].setStress(-deck[i].getStress());
 				}
 			}
 		}

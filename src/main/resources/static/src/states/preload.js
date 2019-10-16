@@ -42,8 +42,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('ruedaHoras', 'assets/interface/ruedaHoras.png');
         game.load.image('pasarB', 'assets/interface/pasar.png');
         game.load.image('esFlag', 'assets/interface/español.png');
-        game.load.image('enFlag', 'assets/interface/ingles.png');        
-        game.load.image('mainTitle', 'assets/interface/mainTitle.png');        
+        game.load.image('enFlag', 'assets/interface/ingles.png');      
         game.load.image('mainTitle+playB', 'assets/interface/mainTitle+playB.png');        
         game.load.image('settingsB', 'assets/interface/ajustes.png');        
         game.load.image('credsBes', 'assets/interface/es/bCreditos.png');   
@@ -92,6 +91,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('3back', 'assets/backs/Trabajo_reverso.png');
         game.load.image('4back', 'assets/backs/Social_reverso.png');
         game.load.image('5back', 'assets/backs/Especiales_reverso.png');
+        game.load.spritesheet('cartaAnim', 'assets/backs/aCarta.png', 751, 1051);
     },
 
     create: function() {

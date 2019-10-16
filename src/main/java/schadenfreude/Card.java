@@ -31,6 +31,10 @@ public class Card {
 	public int getStress() {
 		return stress;
 	}
+	
+	public void setStress(int stress) {
+		this.stress = stress;
+	}
 
 	public int getSynergyID() {
 		return synergyID;

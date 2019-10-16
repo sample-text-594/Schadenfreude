@@ -59,12 +59,12 @@ window.onload = function() {
 			}
 			break;
 		case 'ATTACK CARD PLAYED':
-			console.dir(msg);
 			if (msg.cardType == -1) {
 				game.global.room.cardsAllowed = [-1];
 			} else {
 				game.global.room.cardsAllowed = [msg.cardType, 5];
 			}
+			
 			game.global.room.attackCardPlayed = true;
 			break;
 		case 'DEFENSE CARD PLAYED':
@@ -110,6 +110,8 @@ window.onload = function() {
 				game.global.score = msg.defenseStress;
 				game.global.scoreRival = msg.attackStress;
 			}
+			
+			game.state.start('endgameState');
 			break;
 		default :
 			console.dir(msg);

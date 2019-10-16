@@ -91,6 +91,16 @@ Schadenfreude.levelState.prototype = {
             	this.hand[i].escalaX = 0.2;
             	this.hand[i].escalaY = 0.2;
                 this.resizeBuffer.push(this.hand[i]);
+                
+                this.hand[i].anim = game.add.sprite(150 + i * 175, 600, 'cartaAnim', 0);
+                this.hand[i].anim.scale.setTo(0.2, 0.2);
+            	this.hand[i].anim.animations.add('reveal');
+            	this.hand[i].anim.animations.play('reveal', 5, false, true);
+            	this.hand[i].anim.posX = 150 + i * 175;
+            	this.hand[i].anim.posY = 600;
+            	this.hand[i].anim.escalaX = 0.2;
+            	this.hand[i].anim.escalaY = 0.2;
+                this.resizeBuffer.push(this.hand[i].anim);
         	} else {
         		this.hand[i] = -1;
         	}
@@ -118,7 +128,7 @@ Schadenfreude.levelState.prototype = {
         this.resizeBuffer.push(this.cardBackDefense);
         
         //Card Preview
-        this.cardPreview = game.add.sprite(450, 100, 'blankcard');
+        this.cardPreview = game.add.sprite(450, 100, '-1back');
         this.cardPreview.scale.setTo(0.4, 0.4);
         this.cardPreview.kill();
         this.cardPreview.posX = 450;
@@ -313,6 +323,22 @@ Schadenfreude.levelState.prototype = {
     	        	this.hand[i].escalaX = 0.2;
     	        	this.hand[i].escalaY = 0.2;
     	            this.resizeBuffer.push(this.hand[i]);
+    	            
+    	            if (this.hand[i].anim == undefined) {
+    	            	this.hand[i].anim = game.add.sprite(150 + i * 175, 600, 'cartaAnim', 0);
+                        this.hand[i].anim.scale.setTo(0.2, 0.2);
+                    	this.hand[i].anim.animations.add('reveal');
+                    	this.hand[i].anim.posX = 150 + i * 175;
+                    	this.hand[i].anim.posY = 600;
+                    	this.hand[i].anim.escalaX = 0.2;
+                    	this.hand[i].anim.escalaY = 0.2;
+                        this.resizeBuffer.push(this.hand[i].anim);
+    	            } else {
+    	            	this.hand[i].anim.revive();
+    	            }
+    	            
+                	this.hand[i].anim.animations.play('reveal', 5, false, true);
+                	
 				} else if (this.hand[i] != -1) {
 					if (game.global.room.cardsAllowed.includes(game.global.player.handTypes[i])) {
 						if (!this.hand[i].input.draggable) {
@@ -341,7 +367,7 @@ Schadenfreude.levelState.prototype = {
     			}
     		}
     		
-    		if (game.global.player.side = "ataque") {
+    		if (game.global.player.side == "ataque") {
     			this.marcaEspada.loadTexture('marcaEspadaV');
     			this.marcaEscudo.loadTexture('marcaEscudo'); 
     		} else {
