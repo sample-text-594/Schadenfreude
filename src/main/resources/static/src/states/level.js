@@ -258,7 +258,9 @@ Schadenfreude.levelState.prototype = {
     checkForUpdates: function() {
     	if (game.global.room.attackCardPlayed) {
     		this.cardBackAttack.loadTexture(game.global.room.cardsAllowed[0] + 'back');
-    		this.cardBackAttack.revive();
+    		if (!this.cardBackAttack.alive) {
+    			this.cardBackAttack.revive();
+    		}
     		game.global.room.attackCardPlayed = false;
     	}
     	
@@ -348,6 +350,8 @@ Schadenfreude.levelState.prototype = {
     		}
     		
     		this.barraEstres.frame = game.global.player.stress;
+    		
+    		game.global.room.reDraw = false;
     	}
     },
 }

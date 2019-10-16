@@ -59,6 +59,7 @@ window.onload = function() {
 			}
 			break;
 		case 'ATTACK CARD PLAYED':
+			console.dir(msg);
 			if (msg.cardType == -1) {
 				game.global.room.cardsAllowed = [-1];
 			} else {
@@ -100,7 +101,6 @@ window.onload = function() {
 			game.global.room.timeRotate = true;
 			
 			game.global.room.reDraw = true;
-			console.dir(msg);
 			break;
 		case 'END GAME':
 			if (game.global.player.side == "ataque") {
