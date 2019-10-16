@@ -48,8 +48,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('settingsB', 'assets/interface/ajustes.png');        
         game.load.image('credsBes', 'assets/interface/es/bCreditos.png');   
         game.load.image('credsBen', 'assets/interface/en/bCreditos.png');      
-        game.load.image('playB', 'assets/interface/ClickToPlay.png');        
-        game.load.image('hScoreB', 'assets/interface/highscore.png');        
+        game.load.image('playB', 'assets/interface/ClickToPlay.png'); 
         game.load.image('langBes', 'assets/interface/es/langButton.png');        
         game.load.image('langBen', 'assets/interface/en/langButton.png');        
         game.load.image('mas', 'assets/interface/mas.png');        

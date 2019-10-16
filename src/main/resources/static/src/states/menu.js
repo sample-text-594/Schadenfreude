@@ -41,14 +41,6 @@ Schadenfreude.menuState.prototype = {
         settingsB.escalaY = 0.9;
         this.resizeBuffer.push(settingsB);
         
-        hiscoreB = game.add.button(1070, 650, 'hScoreB', hiscoreButton, this);
-        hiscoreB.scale.setTo(0.9, 0.9);
-        hiscoreB.posX = 1070;
-        hiscoreB.posY = 650;
-        hiscoreB.escalaX = 0.9;
-        hiscoreB.escalaY = 0.9;
-        this.resizeBuffer.push(hiscoreB);
-        
         if(game.global.lang == "es"){
             credsB = game.add.button(0, 0, 'credsBes', credsButton, this);
             credsB.scale.setTo(0.5, 0.5);
@@ -119,10 +111,6 @@ Schadenfreude.menuState.prototype = {
 
 function playButton() {
     game.state.start('matchmakingState');    
-}
-
-function hiscoreButton() {
-    game.state.start('hiscoreState');    
 }
 
 function settingsButton() {

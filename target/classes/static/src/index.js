@@ -129,7 +129,6 @@ window.onload = function() {
 	game.state.add('loseState', Schadenfreude.loseState)
 	game.state.add('tieState', Schadenfreude.tieState)
 	game.state.add('settingsState', Schadenfreude.settingsState)
-	game.state.add('hiscoreState', Schadenfreude.hiscoreState)
 	game.state.add('creditsState', Schadenfreude.creditsState)
 	game.state.add('tutorialState', Schadenfreude.tutorialState)
 	
