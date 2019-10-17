@@ -2,7 +2,7 @@
 
 
 # Índice
-1. [Introducción](#1introducción)
+1. [Introducción](#1-introducción)
 2. [Mecánicas de juego](#2-mecánicas-de-juego)
     1. [Cartas de ataque](#cartas-de-ataque)
         1. [Cartas de transporte](#cartas-de-transporte)   
@@ -16,15 +16,15 @@
         3. [Cartas de trabajo](#cartas-de-trabajo-1)
         4. [Cartas sociales](#cartas-sociales-1)
         5. [Cartas de alimentación](#cartas-de-alimentación-1)
-    3. Cartas especiales
-3. Interfaz
-4. Estética y arte
-5. Trasfondo e historia
-6. Sonido y música
-7. Comercialización
+    3. [Cartas especiales](#cartas-especiales)
+3. [Interfaz](#3-interfaz)
+4. [Estética y arte](#4-estética-y-arte)
+5. [Trasfondo e historia](#5-trasfondo-e-historia)
+6. [Sonido y música](#6-sonido-y-música)
+7. [Comercialización](#7-comercialización)
 
 
-## 1.Introducción 
+## 1. Introducción 
 ### Sobre Schadenfreude:
 “Schadenfreude” es un videojuego de cartas competitivo en el que se enfrentan dos jugadores, en él, un jugador tiene como objetivo lograr que el otro jugador tenga un mal día, mientras el otro trata de alcanzar el final del día lo mejor que pueda.
 ### Plataformas:
@@ -143,3 +143,141 @@ Las cartas especiales son distintas al resto, sólo hay seis de ellas en total, 
 ![](/Imágenes/Cartas%20Alimentacion/carta32.png)
 ![](/Imágenes/Cartas%20Alimentacion/carta33.png)
 ![](/Imágenes/Cartas%20Alimentacion/carta34.png)
+
+### Cartas especiales
+![](/Imágenes/Cartas%20Especiales/carta50.png)
+![](/Imágenes/Cartas%20Especiales/carta51a.png)
+![](/Imágenes/Cartas%20Especiales/carta51b.png)
+![](/Imágenes/Cartas%20Especiales/carta52a.png)
+![](/Imágenes/Cartas%20Especiales/carta52b.png)
+![](/Imágenes/Cartas%20Especiales/carta53a.png)
+![](/Imágenes/Cartas%20Especiales/carta53b.png)
+![](/Imágenes/Cartas%20Especiales/carta54a.png)
+![](/Imágenes/Cartas%20Especiales/carta54b.png)
+![](/Imágenes/Cartas%20Especiales/carta55a.png)
+![](/Imágenes/Cartas%20Especiales/carta55b.png)
+
+La carta de repetición electoral es una carta única que no suma ni resta puntos de estrés, simplemente refresca la página, cancela la partida y te devuelve al menú.
+
+### Sinergias
+Si en un mismo turno se usan determinadas cartas de la misma categoría, puede darse una sinergia. Estas sinergias otorgan una bonificación o penalización al estrés. Las cartas que tienen sinergias son: 
+
+#### Cartas de transporte
+ “VTC – vas tarde capitalista” y “Taxi”: -2 al estrés
+“Pinchazo en la rodilla” y “Eres runner”: +2 al estrés
+
+#### Cartas de hogar
+“Fuerte discusión” y “4:20”: -2 al estrés
+“Ajo y agua” y “Mis adorables vecinos”: +2 al estrés
+
+#### Cartas de trabajo
+“Puntos de exp” y “Recién graduado”: -2 al estrés
+“Eres autónomo” y “Tu compañero te cubre”: +2 al estrés
+
+#### Cartas sociales
+“¡A quemar la pista!” y “Tremendo cumbión”: -3 al estrés
+“Espectacular tiempo” y “Viejoven”: +3 al estrés
+
+#### Cartas de alimentación
+“Nevera vacía” y “Los tuppers”: -2 al estrés
+“Si comes durum, cagas blandum” y “Aquarius”: +4 al estrés
+
+## 3. Interfaz
+### Diagrama de flujo de estados
+![](/Imágenes/Diagrama.jpg)
+
+### Ejemplos de interfaz *in-game*
+Selección de idioma
+![](/Imágenes/Interfaz/sel_idioma.png)
+
+Menú en español
+![](/Imágenes/Interfaz/menu.jpg)
+
+Menú en inglés
+![](/Imágenes/Interfaz/menu_ingles.jpg)
+
+Pantalla de carga
+![](/Imágenes/Interfaz/buscando.jpg)
+
+Créditos
+![](/Imágenes/Interfaz/creditos.jpg)
+
+Juego
+![](/Imágenes/Interfaz/juego.png)
+
+Ajustes
+![](/Imágenes/Interfaz/volumen.png)
+
+Tutorial
+![](/Imágenes/Interfaz/tutorial1.jpg)
+
+## 4. Estética y arte
+El apartado artístico del juego, como hemos ido exponiendo en los apartados anteriores, es uno que tiene la simpleza y el minimalismo como máxima. Esto se debe a que durante la fase de preproducción del videojuego salieron a la luz varias cuestiones respecto al apartado estético:
+
+* •	¿Cómo hacemos para integrar el estilo de dibujo de tres artistas diferentes y que quede todo relativamente homogéneo?
+
+* •	¿Cómo hacemos para que los jugadores entiendan cómo funciona el juego en el menor tiempo posible y no se confundan o lo entiendan mal?
+
+* •	¿Cómo lo hacemos atractivo visualmente para que llame la atención y la gente decida probarlo?
+
+Con un apartado artístico sencillo, podemos conseguir que los diferentes artistas lleguen a un estilo común, homogéneo y, aun así, distintivo. También, al limitar la cantidad de información visual que recibe, facilitamos a los jugadores la comprensión de las mecánicas del juego y el funcionamiento de este. Y, por último, utilizando la simpleza y el minimalismo como una manera de diferenciarnos del resto de videojuegos de cartas, por lo general con dibujos y estéticas bastante más complejas y detalladas (*Hearthstone* o *Magic: the Gathering*, por ejemplo), hacemos que el título resulte fresco visualmente, y así, más atrayente para los posibles jugadores.
+
+Además de esto, para también facilitar la rápida comprensión, las cartas, dependiendo de su categoría, son de un color en específico: transporte, rojas; hogar, amarillas; trabajo, azules; sociales, naranjas; alimentación, verdes; y especiales, moradas. De esta forma, con un rápido vistazo, el jugador entiende de que cartas dispone y puede comenzar a planear inmediatamente su estrategia para el turno.
+
+## 5. Trasfondo e historia
+La trama de “*Schadenfreude*” es bastante sencilla: es el día a día de una persona cualquiera a la que, desde que se levanta hasta que se acuesta, la vida no para de tratar de arruinarle la jornada.
+
+Siendo este el trasfondo del videojuego, los roles que deben tomar los dos jugadores están claros: uno debe de ser esa persona que trata de llegar al final del día lo más saludable, a nivel mental, posible; y el otro debe de encarnar esa idea de la vida intentando por todos los medios estropearle el día. Se podría decir que, a nivel de historia, el juego funciona como una especie de *Sims* con un giro canalla, en el que el primer jugador es uno de estos seres virtuales, mientras que el segundo encarna a ese tipo de jugador de *Los Sims* que se divierte haciéndoselo pasar mal a sus personajes.
+
+Aún con todo, el videojuego no es uno narrativo, ni pretende serlo. Con este breve trasfondo lo único que se pretende es dar la suficiente información a los jugadores para que no les sea complicado entrar en el juego. Es sencillo, cuando se es el jugador defensivo, entenderlo como si fueras tú mismo teniendo un mal día; prácticamente ninguna situación es demasiado inverosímil (exceptuando las cartas especiales), y todos hemos sufrido alguna de ellas. Y siendo el jugador atacante, resulta divertido ponerse en el otro lado, en los zapatos de “esa persona” que no deja de fastidiar el día a otro… 
+
+En definitiva, la historia y trasfondo en “*Schadenfreude*” funciona como una breve trama que sirve, sobre todo, para dar contexto a las acciones de los jugadores. Esta es, además, sencilla y casi costumbrista, para que este contexto del título resulte lo menos ajeno posible y se entre rápidamente en la dinámica propuesta.
+
+## 6. Sonido y música
+### Efectos de sonido
+Debido a que “*Schadenfreude*” es un juego de cartas, no requiere demasiados efectos de sonido, por ello hemos utilizado un sonido de movimiento de cartas descargado de una librería gratuita, que se reproducirá cada vez que se juegue una carta.
+
+### BSO
+El punto de partida para crear la BSO de “*Schadenfreude*” fue el siguiente: “música de ascensor pero con algún pico de tensión”.
+
+A partir de dicha idea se han creado dos temas, uno para el menú principal y otro para el juego en sí.
+
+El tema del menú es un poco más relajado ya que pretende hacer que el jugador se encuentre cómodo mientras espera para jugar una partida o mientras navega por los submenús de créditos o ajustes.
+
+El tema que se escucha durante la partida es un poco más frenético puesto que debe canalizar al jugador una leve sensación de tensión o de estrés ya que en eso consiste nuestro videojuego, en aumentar el estrés del rival.
+
+Para la banda sonora nos hemos inspirado en progresiones de acordes típicas de música para casino pero con un toque vintage. Recuerda al sonido de consolas de los 2000, por lo que hemos usado un emulador de sintetizador y un keyboard de la época para reproducir los sonidos. De la partitura de progresiones hemos creado un archivo .midi con el que hemos podido producir el archivo de audio usando el software ABLETON LIVE 10. 
+
+## 7. Comercialización
+### Audiencia *target*
+	Con este título queremos llegar, en especial, a la audiencia casual de gente entre 15 y 30 años. En *SampleText594* consideramos que dadas las características del videojuego: ser un juego de navegador, consistir en partidas cortas o ser un juego sencillo; el público casual es el objetivo perfecto. Además, dada la naturaleza de las bromas de las cartas, la gente de entre 15 y 30 años es el segmento de audiencia con más probabilidades de entenderlas y de divertirse con ellas.
+
+### Diferenciación con la competencia
+El mercado de videojuegos de cartas es uno complejo. Dada la cantidad de horas que se suele necesitar para hacerse con las mecánicas de estos títulos, hay juegos muy potentes, que llevan ya tiempo asentados y contra los que es extremadamente difícil competir: *Hearthstone* o *Magic*, por ejemplo.
+
+A parte de esto, desde hace unos años, están surgiendo un nuevo tipo de juegos de cartas que no funcionan como juegos de cartas al uso, son juegos de acción y aventura que utilizan las cartas como una mecánica de combate: *Slay the Spire* o *Dicey Dungeons*, entre otros.
+
+Con estos dos estilos de juegos de cartas en mente, en “*Schadenfreude*” buscamos combinarlos de alguna manera. De esa forma surgió la idea para este videojuego de cartas que tomara ideas de ambas corrientes y a la vez tuviera sus propias influencias y su propia voz. Así, tomamos influencias de juegos de mesa como *Munchkin*, y de videojuegos de simulación de vida como *Los Sims*.  De esta manera, “*Schadenfreude*” tiene las suficientes similitudes con juegos de cartas más establecidos y populares como para transmitir un sentimiento de familiaridad, a la vez que tiene aspectos novedosos que lo diferencian del resto de títulos de este estilo y que hacen que ofrezca una experiencia distinta y atrayente.
+
+### Monetización y modelo de negocio
+Siguiendo el modelo canvas: 
+![](/Imágenes/Modelo_canvas.jpg)
+
+Profundizando un poco más en la monetización, las fuentes de ingreso que tendrá “*Schadenfreude*”, serán la publicidad que aparecerá en la página del videojuego, los patrocinadores que deseen apoyar el título, y las expansiones.
+
+Estas expansiones serán barajas nuevas de cartas que aportarán variedad al título. Pueden ser temáticas: *Halloween*, por ejemplo; o ampliaciones más clásicas: más cartas de las mismas categorías y del mismo tipo que ya hay.
+
+### Modelo de negocio durante dos años
+“*Schadenfreude*” seguirá un modelo de negocio de tipo Freemium. El juego base será gratuito, pero a lo largo de los 2 años se irán lanzando expansiones.
+
+Habrá 2 tipos de expansiones: gratuitas y de pago.
+
+Las expansiones gratuitas consistirán en un par de cartas nuevas que se introducirán en el juego cada quince días, y que no supondrán ningún gasto para el jugador. El objetivo de este tipo de expansión es incentivar al jugador para que entre al juego con asiduidad para descubrir las nuevas cartas.
+
+Las expansiones de pago se introducirán cada seis meses, haciendo un total de cuatro expansiones durante los dos años. Consistirán en dos nuevas categorías de cartas, que no tendrán ninguna relación con las categorías ya existentes en el juego base. Además, también se incluirán nuevas cartas, el número dependerá de la expansión en concreto, para las categorías existentes. Cada expansión saldrá a la venta a un precio de quince euros.
+
+Después de la salida de la primera expansión el juego emparejará a los jugadores de modo que solo jueguen entre sí aquellos que posean el mismo número de expansiones.
+
+Las expansiones supondrán una buena manera de obtener ingresos, pero no la única. En los dos años siguientes a la salida del juego el plan es que sigamos obteniendo ingresos de la publicidad que aparece en la página que alojará el juego.
+
+Por último, otra posible forma de obtener ingresos sería a partir de patrocinadores que pagasen para que su marca saliese en el juego, ya sea en el reverso de las cartas o con una categoría exclusiva relacionada con el producto que venden.
