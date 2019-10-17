@@ -17,6 +17,9 @@ Schadenfreude.menuState.prototype = {
     },
 
     create: function() {
+    	if (game.global.music != undefined) {
+    		game.global.music.stop();
+    	}
     	game.global.music = game.add.audio('menuMusic');
     	game.global.music.loop = true;
     	game.global.music.play();

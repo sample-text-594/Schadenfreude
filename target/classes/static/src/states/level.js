@@ -199,7 +199,6 @@ Schadenfreude.levelState.prototype = {
             	
             	sprite.destroy();
             	this.hand[sprite.index] = -1;
-            	game.global.player.hand[sprite.index] = -1;
             	
             	game.global.player.turn = 0;
             	this.playCard(sprite.index);
@@ -216,7 +215,6 @@ Schadenfreude.levelState.prototype = {
             	
             	sprite.destroy();
             	this.hand[sprite.index] = -1;
-            	game.global.player.hand[sprite.index] = -1;
             	
             	game.global.player.turn = 0;
             	this.playCard(sprite.index);
@@ -258,7 +256,7 @@ Schadenfreude.levelState.prototype = {
     
     playCard: function(index) {
     	let sound = game.add.audio('cardFlip');
-    	sound.volume = game.global.sound/10;
+    	sound.volume = game.global.sound/5;
     	sound.play();
     	
     	this.botonPasar.inputEnabled = false;
@@ -281,6 +279,8 @@ Schadenfreude.levelState.prototype = {
     	} else {
     		msg.elecciones = false;
     	}
+    	
+    	game.global.player.hand[index] = -1;
     	
     	if (game.global.DEBUG_MODE) {
     		console.log("[DEBUG] Sending PLAY CARD message to server");
@@ -400,6 +400,7 @@ Schadenfreude.levelState.prototype = {
     			this.marcaEscudo.loadTexture('marcaEscudoV');
     		}
     		
+    		this.ruedaHoras.angle = 0;
     		this.barraEstres.frame = game.global.player.stress;
     		
     		game.global.room.reDraw = false;

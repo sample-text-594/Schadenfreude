@@ -17,6 +17,18 @@ Schadenfreude.endgameState.prototype = {
     },
 
     create: function() {
+    	if (game.global.player.side == "ataque") {
+    		let msg = new Object();
+        	
+        	msg.type = 'MATCHMAKING';
+        	msg.event = 'DELETE GAME';
+        	
+        	if (game.global.DEBUG_MODE) {
+        		console.log("[DEBUG] Sending DELETE GAME message to server");
+        	}
+        	
+        	game.global.socket.send(JSON.stringify(msg));
+    	}
 
         this.fondo = game.add.sprite(0, 0, 'fondo');
     	this.fondo.scale.setTo(1.2, 2);

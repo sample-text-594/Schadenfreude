@@ -46,7 +46,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.spritesheet('barraEstres', 'assets/interface/level/spritesheetBarra.png', 120, 646);        
 
         //Idioma
-        game.load.image('esFlag', 'assets/interface/idioma/español.png');
+        game.load.image('esFlag', 'assets/interface/idioma/espanol.png');
         game.load.image('enFlag', 'assets/interface/idioma/ingles.png');    
         
         //Menu
@@ -105,7 +105,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('rueda', 'assets/interface/tutorial/rueda.png');
         game.load.image('screen', 'assets/interface/tutorial/screen.png');
 
-        //Textos tutorial español
+        //Textos tutorial espanol
         game.load.image('titulo', 'assets/interface/tutorial/es/titulo.png');        
         game.load.image('texto1', 'assets/interface/tutorial/es/texto1.png');
         game.load.image('texto2', 'assets/interface/tutorial/es/texto2.png');
@@ -139,7 +139,7 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('text13', 'assets/interface/tutorial/en/texto13.png');
         game.load.image('text14', 'assets/interface/tutorial/en/texto14.png');
         
-        //Cargamos las cartas en español
+        //Cargamos las cartas en espanol
         for (var i = 0; i < 50; i++) {
             game.load.image('carta' + i + 'es', 'assets/es/carta' + i + '.png');
         }
@@ -170,8 +170,8 @@ Schadenfreude.preloadState.prototype = {
         game.load.spritesheet('cartaAnim', 'assets/backs/aCarta.png', 751, 1051);
         
         //Musica
-        game.load.audio('menuMusic', 'assets/music/track_1_title_screen.mp3');
-        game.load.audio('gameMusic', 'assets/music/track_1_main_game.mp3');
+        game.load.audio('menuMusic', 'assets/music/track_1_title_screen.ogg');
+        game.load.audio('gameMusic', 'assets/music/track_1_main_game.ogg');
         game.load.audio('cardFlip', 'assets/music/card_flip_sound.ogg');
     },
 

@@ -61,6 +61,8 @@ public class Player {
 	public void setStress(int stress) {
 		if (stress < 0) {
 			this.stress = 0;
+		} if (stress > 15) {
+			this.stress = 15;
 		} else {
 			this.stress = stress;
 		}

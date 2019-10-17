@@ -36,9 +36,9 @@ Schadenfreude.tieState.prototype = {
         
         if (game.global.room.elecciones) {
         	if (game.global.lang == 'es') {
-        		var text = "Nuevas elecciones.\n Se reinicia el país y, con él, tu espectacular partida.";
+        		var text = "Nuevas elecciones.\nSe reinicia el país y, con él, tu espectacular partida.";
         	} else {
-        		var text = "Did you pulse the BrEXIT button? The country reboots itself and, with it, your astonishing game.";
+        		var text = "Did you pulse the BrEXIT button?\nThe country reboots and, with it, your astonishing game.";
         	}
             var style = { font: "40px Arial", fill: "#555555", align: "center" };
             var text = game.add.text(300, 320, text, style);
@@ -57,6 +57,9 @@ Schadenfreude.tieState.prototype = {
         this.resizeBuffer.push(backB);
         
         this.resize();
+        
+        game.global.player = undefined;
+        game.global.room = undefined;
     },
     
     resize: function() {

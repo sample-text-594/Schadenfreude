@@ -1,13 +1,12 @@
 package schadenfreude;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Random;
 
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.socket.TextMessage;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -34,7 +33,7 @@ public class Game {
 		this.attackPlayer = player1;
 		this.defensePlayer = player2;
 
-		time = "mañana";
+		time = "manana";
 		turn = 0;
 		
 		loadCards();
@@ -46,7 +45,7 @@ public class Game {
 		int specialCards = -1;
 		
 		try {
-			InputStream fileStream = new FileInputStream(ResourceUtils.getFile("classpath:cards.json"));
+			InputStream fileStream = (new ClassPathResource("static/cards.json")).getInputStream();
 			
 			JsonNode node;
 			node = mapper.readTree(fileStream);
@@ -106,7 +105,7 @@ public class Game {
 			specialCardsArr[i] = c;
 		}
 		
-		//Añadimos equitativamente las cartas especiales a los mazos de los jugadores
+		//Anadimos equitativamente las cartas especiales a los mazos de los jugadores
 		for (int i = 0; i < specialCards / 2; i++) {
 			player1Deck[(totalCards - specialCards) / 2 + i] = specialCardsArr[i];
 		}
@@ -129,7 +128,7 @@ public class Game {
 	private int[] getCardsAllowed() {
 		int[] arr;
 		switch (time) {
-			case ("mañana"):
+			case ("manana"):
 				arr = new int[3];
 			
 				arr[0] = 0;
@@ -175,7 +174,7 @@ public class Game {
 				turn++;
 			} else {
 				switch (time) {
-					case ("mañana"):
+					case ("manana"):
 						time = "mediodia";
 						break;
 					case ("mediodia"):
@@ -479,7 +478,7 @@ public class Game {
 		
 		attackPlayer.swapSide();
 		defensePlayer.swapSide();
-		time = "mañana";
+		time = "manana";
 		
 		Player auxPlayer = attackPlayer;
 		attackPlayer = defensePlayer;
@@ -557,12 +556,7 @@ public class Game {
 		msg.put("event", "END GAME");
 		msg.put("attackStress", attackPlayer.getStress());
 		msg.put("defenseStress", defensePlayer.getStress());
-		
-		if (elecciones) {
-			msg.put("elecciones", true);
-		} else {
-			msg.put("elecciones", false);
-		}
+		msg.put("elecciones", elecciones);
 		
 		try {
 			attackPlayer.getSession().sendMessage(new TextMessage(msg.toString()));

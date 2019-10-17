@@ -1,12 +1,13 @@
 package schadenfreude;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.web.socket.WebSocketSession;
 
@@ -15,18 +16,18 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class Matchmaking {
 	private Map<Integer, Game> rooms;
 	private Map<Integer, Player> playersIDMap;
-	private Queue<Player> playersWaitingQueue;
+	private BlockingQueue<Player> playersWaitingQueue;
 	
-	private int playersID = 0;
-	private int playersWaiting = 0;
+	private AtomicInteger playersID = new AtomicInteger(0);
+	private AtomicInteger playersWaiting = new AtomicInteger(0);
 	private int roomsID = 0;
 	
 	private ScheduledExecutorService scheduler;
 	
 	public Matchmaking() {
-		rooms = new HashMap<>();
-		playersIDMap = new HashMap<>();
-		playersWaitingQueue = new LinkedList<>();
+		rooms = new ConcurrentHashMap<>();
+		playersIDMap = new ConcurrentHashMap<>();
+		playersWaitingQueue = new LinkedBlockingQueue<Player>();
 		
 		if (scheduler == null) {
 			scheduler = Executors.newScheduledThreadPool(1);
@@ -35,10 +36,9 @@ public class Matchmaking {
 	}
 	
 	public Player addPlayer(WebSocketSession session) {
-		Player p = new Player(session, playersID);
+		Player p = new Player(session, playersID.getAndIncrement());
 		
-		playersIDMap.put(playersID, p);
-		playersID++;
+		playersIDMap.put(p.getId(), p);
 		
 		return p;
 	}
@@ -49,12 +49,12 @@ public class Matchmaking {
 	
 	public void putPlayerOnQueue(Player p) {
 		playersWaitingQueue.add(p);
-		playersWaiting++;
+		playersWaiting.incrementAndGet();
 	}
 	
 	private void createGame() {
-		if (playersWaiting > 1) {
-			playersWaiting -= 2;
+		if (playersWaiting.get() > 1) {
+			playersWaiting.addAndGet(-2);
 			Player p1 = playersWaitingQueue.remove();
 			Player p2 = playersWaitingQueue.remove();
 			
@@ -67,6 +67,10 @@ public class Matchmaking {
 			
 			roomsID++;
 		}
+	}
+	
+	public void deleteGame(int roomID) {
+		rooms.remove(roomID);
 	}
 	
 	public void serveMessage(JsonNode node, Player p) {

@@ -16,25 +16,37 @@ public class WebsocketGameHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		Player p = matchmaking.addPlayer(session);
-		session.getAttributes().put(PLAYER_ATTRIBUTE, p);
+		synchronized(session) {
+			Player p = matchmaking.addPlayer(session);
+			session.getAttributes().put(PLAYER_ATTRIBUTE, p);
+		}
 	}
 	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		try {
 			JsonNode node;
+			Player p;
 			
-			node = mapper.readTree(message.getPayload());
+			synchronized(mapper) {
+				node = mapper.readTree(message.getPayload());
+			}
+			
+			synchronized(session) {
+				p = (Player) session.getAttributes().get(PLAYER_ATTRIBUTE);
+			}
 			
 			if (node.get("type").asText().equals("MATCHMAKING")) {
 				switch (node.get("event").asText()) {
 					case "PUT ON QUEUE":
-						matchmaking.putPlayerOnQueue((Player) session.getAttributes().get(PLAYER_ATTRIBUTE));
+						matchmaking.putPlayerOnQueue(p);
+						break;
+					case "DELETE GAME":
+						matchmaking.deleteGame(p.getRoomId());
 						break;
 				}
 			} else {
-				matchmaking.serveMessage(node, (Player) session.getAttributes().get(PLAYER_ATTRIBUTE));
+				matchmaking.serveMessage(node, p);
 			}
 		} catch (Exception e) {
 			System.err.println("Exception processing message " + message.getPayload());
@@ -44,6 +56,8 @@ public class WebsocketGameHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		matchmaking.removePlayer(((Player) session.getAttributes().get(PLAYER_ATTRIBUTE)).getId());
+		synchronized(session) {
+			matchmaking.removePlayer(((Player) session.getAttributes().get(PLAYER_ATTRIBUTE)).getId());
+		}
 	}
 }

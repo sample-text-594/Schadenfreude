@@ -42,6 +42,9 @@ Schadenfreude.winState.prototype = {
         this.resizeBuffer.push(backB);
         
         this.resize();
+        
+        game.global.player = undefined;
+        game.global.room = undefined;
     },
     
     resize: function() {

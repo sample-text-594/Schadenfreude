@@ -20,7 +20,7 @@ window.onload = function() {
 	}
 
 	// WEBSOCKET CONFIGURATOR
-	game.global.socket = new WebSocket("ws://" + window.location.hostname + ":8080/game");
+	game.global.socket = new WebSocket("ws://" + window.location.hostname + "/game");
 	
 	game.global.socket.onopen = () => {
 		if (game.global.DEBUG_MODE) {
@@ -55,7 +55,7 @@ window.onload = function() {
 				defenseCardPlayed : false,
 				defenseCard : -1,
 				beginTurn : false,
-				time : 'mañana',
+				time : 'manana',
 				reDraw : false
 			}
 			break;
@@ -98,8 +98,7 @@ window.onload = function() {
 			game.global.player.side = msg.side;
 			
 			game.global.room.cardsAllowed = msg.cardsAllowed;
-			game.global.room.time = "mañana";
-			game.global.room.timeRotate = true;
+			game.global.room.time = "manana";
 			
 			game.global.room.reDraw = true;
 			break;
