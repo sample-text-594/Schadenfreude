@@ -53,6 +53,7 @@ Schadenfreude.settingsState.prototype = {
         moreB = game.add.button(0, 0, 'mas', function() {
             if(game.global.sound < 9){
                 game.global.sound++;
+                game.global.music.volume = game.global.sound/10;
                 text.setText(game.global.sound);        
             }
         }, this);
@@ -65,6 +66,7 @@ Schadenfreude.settingsState.prototype = {
         lessB = game.add.button(0, 0, 'menos', function() {
             if(game.global.sound > 0){
                 game.global.sound--;
+                game.global.music.volume = game.global.sound/10;
                 text.setText(game.global.sound);
             }
         }, this);

@@ -372,7 +372,7 @@ public class Game {
 					lastRound = true;
 					swapRoles();
 				} else {
-					endGame();
+					endGame(false);
 				}
 			}
 		}
@@ -549,7 +549,7 @@ public class Game {
 		beginTurn("ataque");
 	}
 	
-	private void endGame() {
+	private void endGame(boolean elecciones) {
 		ObjectNode msg;
 		
 		msg = mapper.createObjectNode();
@@ -557,6 +557,12 @@ public class Game {
 		msg.put("event", "END GAME");
 		msg.put("attackStress", attackPlayer.getStress());
 		msg.put("defenseStress", defensePlayer.getStress());
+		
+		if (elecciones) {
+			msg.put("elecciones", true);
+		} else {
+			msg.put("elecciones", false);
+		}
 		
 		try {
 			attackPlayer.getSession().sendMessage(new TextMessage(msg.toString()));
@@ -570,10 +576,11 @@ public class Game {
 	public void handleMessage(JsonNode node, int playerID) {
 		switch (node.get("event").asText()) {
 			case "PLAY CARD":
-				playCard(playerID, node.get("index").asInt());
-				break;
-			case "END GAME":
-				endGame();
+				if (node.get("elecciones").asBoolean()) {
+					endGame(true);
+				} else {
+					playCard(playerID, node.get("index").asInt());
+				}
 				break;
 		}
 	}

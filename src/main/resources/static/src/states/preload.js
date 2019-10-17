@@ -168,6 +168,11 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('4back', 'assets/backs/Social_reverso.png');
         game.load.image('5back', 'assets/backs/Especiales_reverso.png');
         game.load.spritesheet('cartaAnim', 'assets/backs/aCarta.png', 751, 1051);
+        
+        //Musica
+        game.load.audio('menuMusic', 'assets/music/track_1_title_screen.mp3');
+        game.load.audio('gameMusic', 'assets/music/track_1_main_game.mp3');
+        game.load.audio('cardFlip', 'assets/music/card_flip_sound.ogg');
     },
 
     create: function() {

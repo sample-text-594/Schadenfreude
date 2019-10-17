@@ -74,6 +74,11 @@ Schadenfreude.matchmakingState.prototype = {
 
     update: function() {
     	if (game.global.room !== undefined) {
+    		game.global.music.stop();
+    		game.global.music = game.add.audio('gameMusic');
+        	game.global.music.loop = true;
+        	game.global.music.play();
+        	game.global.music.volume = game.global.sound/10;
     		game.state.start('levelState')
     	}
     }

@@ -17,7 +17,11 @@ Schadenfreude.menuState.prototype = {
     },
 
     create: function() {
-
+    	game.global.music = game.add.audio('menuMusic');
+    	game.global.music.loop = true;
+    	game.global.music.play();
+    	game.global.music.volume = game.global.sound/10;
+    	
         this.fondo = game.add.sprite(0, 0, 'fondo');
     	this.fondo.scale.setTo(2, 2);
         this.fondo.posX = 0;
@@ -26,12 +30,21 @@ Schadenfreude.menuState.prototype = {
         this.fondo.escalaY = 2;
         this.resizeBuffer.push(this.fondo);
 
-        playB = game.add.button(300, 50, 'mainTitle+playB', playButton, this);
-        playB.posX = 320;
-        playB.posY = 50;
-        playB.escalaX = 1;
-        playB.escalaY = 1;
-        this.resizeBuffer.push(playB);
+        if(game.global.lang == "es"){   
+            playB = game.add.button(300, 50, 'mainTitlees', playButton, this);
+            playB.posX = 320;
+            playB.posY = 50;
+            playB.escalaX = 1;
+            playB.escalaY = 1;
+            this.resizeBuffer.push(playB);
+        } else {
+            playB = game.add.button(300, 50, 'mainTitleen', playButton, this);
+            playB.posX = 320;
+            playB.posY = 50;
+            playB.escalaX = 1;
+            playB.escalaY = 1;
+            this.resizeBuffer.push(playB);
+        }
         
         settingsB = game.add.button(1200, 630, 'settingsB', settingsButton, this);
         settingsB.scale.setTo(0.9, 0.9);
@@ -126,5 +139,5 @@ function langButton() {
 }
 
 function tutButton() {
-    game.state.start('tutorialState');    
+    game.state.start('tutorial1State');    
 }

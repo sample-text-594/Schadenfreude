@@ -39,6 +39,7 @@ Schadenfreude.levelState.prototype = {
         this.botonPasar.escalaX = 1;
         this.botonPasar.escalaY = 1;
         this.resizeBuffer.push(this.botonPasar);
+        this.botonPasar.inputEnabled = false;
         
         if (game.global.player.side == "ataque") {
         	this.marcaEspada = game.add.sprite(400, 200, 'marcaEspadaV');
@@ -140,6 +141,9 @@ Schadenfreude.levelState.prototype = {
         game.input.mouse.capture = true;
         
         this.resize();
+        
+        this.beginTurn = false;
+        this.beginTurnWait = 50;
     },
     
     resize: function() {
@@ -159,6 +163,15 @@ Schadenfreude.levelState.prototype = {
     },
 
     update: function() {
+    	if (game.global.room.beginTurn) {
+    		if (this.beginTurnWait > 0) {
+    			this.beginTurnWait--;
+    		} else {
+    			this.beginTurnWait = 50;
+    			game.global.room.beginTurn = false;
+    			this.beginTurn = true;
+    		}
+    	}
     	if (game.global.room.timeRotate) {
     		if (this.ruedaHoras.counter < 90) {
     			this.ruedaHoras.angle -= 1;
@@ -244,6 +257,11 @@ Schadenfreude.levelState.prototype = {
     },
     
     playCard: function(index) {
+    	let sound = game.add.audio('cardFlip');
+    	sound.volume = game.global.sound/10;
+    	sound.play();
+    	
+    	this.botonPasar.inputEnabled = false;
     	for (var i = 0; i < 6; i++) {
 			if (this.hand[i] != -1 && this.hand[i].input.draggable) {
 				this.hand[i].input.disableDrag();
@@ -257,6 +275,12 @@ Schadenfreude.levelState.prototype = {
     	msg.type = 'GAME';
     	msg.event = 'PLAY CARD';
     	msg.index = index;
+    	
+    	if (game.global.player.hand[index] == '50a' || game.global.player.hand[index] == '50b') {
+    		msg.elecciones = true;
+    	} else {
+    		msg.elecciones = false;
+    	}
     	
     	if (game.global.DEBUG_MODE) {
     		console.log("[DEBUG] Sending PLAY CARD message to server");
@@ -291,7 +315,7 @@ Schadenfreude.levelState.prototype = {
     		game.global.room.defenseCardPlayed = false;
     	}
     	
-    	if (game.global.room.beginTurn) {
+    	if (this.beginTurn) {
     		if (game.global.player.side == "ataque") {
     			if (this.cardBackAttack.alive) {
         			this.cardBackAttack.kill();
@@ -357,7 +381,8 @@ Schadenfreude.levelState.prototype = {
     		}
     		game.global.player.turn = 1;
     		this.resize();
-    		game.global.room.beginTurn = false;
+    		this.beginTurn = false;
+    		this.botonPasar.inputEnabled = true;
     	}
     	
     	if (game.global.room.reDraw) {
@@ -369,10 +394,10 @@ Schadenfreude.levelState.prototype = {
     		
     		if (game.global.player.side == "ataque") {
     			this.marcaEspada.loadTexture('marcaEspadaV');
-    			this.marcaEscudo.loadTexture('marcaEscudo'); 
+    			this.marcaEscudo.loadTexture('marcaEscudo');
     		} else {
     			this.marcaEspada.loadTexture('marcaEspada');
-    			this.marcaEscudo.loadTexture('marcaEscudoV'); 
+    			this.marcaEscudo.loadTexture('marcaEscudoV');
     		}
     		
     		this.barraEstres.frame = game.global.player.stress;

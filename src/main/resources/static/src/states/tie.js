@@ -33,6 +33,21 @@ Schadenfreude.tieState.prototype = {
         this.tie.escalaX = 1.5;
         this.tie.escalaY = 1.5;
         this.resizeBuffer.push(this.tie);
+        
+        if (game.global.room.elecciones) {
+        	if (game.global.lang == 'es') {
+        		var text = "Nuevas elecciones.\n Se reinicia el país y, con él, tu espectacular partida.";
+        	} else {
+        		var text = "Did you pulse the BrEXIT button? The country reboots itself and, with it, your astonishing game.";
+        	}
+            var style = { font: "40px Arial", fill: "#555555", align: "center" };
+            var text = game.add.text(300, 320, text, style);
+            text.posX = 200;
+            text.posY = 320;
+            text.escalaX = 1;
+            text.escalaY = 1;
+            this.resizeBuffer.push(text);
+        }
 
         backB = game.add.button(0, 0, 'atras', backButton, this);
         backB.posX = 20;

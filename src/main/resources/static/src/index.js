@@ -11,9 +11,10 @@ window.onload = function() {
 		width : 1280,
 		height : 720,
 		FPS : 30,
-		DEBUG_MODE : true,
+		DEBUG_MODE : false,
 		socket : null,
 		lang : "es",
+		music : undefined,
 		player : undefined,
 		room : undefined
 	}
@@ -111,7 +112,14 @@ window.onload = function() {
 				game.global.scoreRival = msg.attackStress;
 			}
 			
-			game.state.start('endgameState');
+			game.global.room.elecciones = msg.elecciones;
+			
+			if (game.global.room.elecciones) {
+				game.state.start('tieState');
+			} else {
+				game.state.start('endgameState');
+			}
+			
 			break;
 		default :
 			console.dir(msg);
