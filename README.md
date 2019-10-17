@@ -188,28 +188,28 @@ Si en un mismo turno se usan determinadas cartas de la misma categoría, puede d
 
 ### Ejemplos de interfaz *in-game*
 Selección de idioma
-![](/Imágenes/Interfaz/sel_idioma.png)
+![](/Imágenes/Interfaz/sel_idioma.PNG)
 
 Menú en español
-![](/Imágenes/Interfaz/menu.jpg)
+![](/Imágenes/Interfaz/menu.JPG)
 
 Menú en inglés
-![](/Imágenes/Interfaz/menu_ingles.jpg)
+![](/Imágenes/Interfaz/menu_ingles.JPG)
 
 Pantalla de carga
-![](/Imágenes/Interfaz/buscando.jpg)
+![](/Imágenes/Interfaz/buscando.JPG)
 
 Créditos
-![](/Imágenes/Interfaz/creditos.jpg)
+![](/Imágenes/Interfaz/creditos.JPG)
 
 Juego
-![](/Imágenes/Interfaz/juego.png)
+![](/Imágenes/Interfaz/juego.PNG)
 
 Ajustes
-![](/Imágenes/Interfaz/volumen.png)
+![](/Imágenes/Interfaz/volumen.PNG)
 
 Tutorial
-![](/Imágenes/Interfaz/tutorial1.jpg)
+![](/Imágenes/Interfaz/tutorial1.JPG)
 
 ## 4. Estética y arte
 El apartado artístico del juego, como hemos ido exponiendo en los apartados anteriores, es uno que tiene la simpleza y el minimalismo como máxima. Esto se debe a que durante la fase de preproducción del videojuego salieron a la luz varias cuestiones respecto al apartado estético:
@@ -250,7 +250,7 @@ Para la banda sonora nos hemos inspirado en progresiones de acordes típicas de 
 
 ## 7. Comercialización
 ### Audiencia *target*
-	Con este título queremos llegar, en especial, a la audiencia casual de gente entre 15 y 30 años. En *SampleText594* consideramos que dadas las características del videojuego: ser un juego de navegador, consistir en partidas cortas o ser un juego sencillo; el público casual es el objetivo perfecto. Además, dada la naturaleza de las bromas de las cartas, la gente de entre 15 y 30 años es el segmento de audiencia con más probabilidades de entenderlas y de divertirse con ellas.
+Con este título queremos llegar, en especial, a la audiencia casual de gente entre 15 y 30 años. En *SampleText594* consideramos que dadas las características del videojuego: ser un juego de navegador, consistir en partidas cortas o ser un juego sencillo; el público casual es el objetivo perfecto. Además, dada la naturaleza de las bromas de las cartas, la gente de entre 15 y 30 años es el segmento de audiencia con más probabilidades de entenderlas y de divertirse con ellas.
 
 ### Diferenciación con la competencia
 El mercado de videojuegos de cartas es uno complejo. Dada la cantidad de horas que se suele necesitar para hacerse con las mecánicas de estos títulos, hay juegos muy potentes, que llevan ya tiempo asentados y contra los que es extremadamente difícil competir: *Hearthstone* o *Magic*, por ejemplo.
