@@ -2,20 +2,20 @@
 
 
 # Índice
-1. Introducción
-2. Mecánicas de juego
-    1. Cartas de ataque
-        1. Cartas de transporte   
-        2. Cartas de hogar
-        3. Cartas de trabajo
-        4. Cartas sociales
-        5. Cartas de alimentación
-    2. Cartas de defensa
-        1. Cartas de transporte   
-        2. Cartas de hogar
-        3. Cartas de trabajo
-        4. Cartas sociales
-        5. Cartas de alimentación
+1. [Introducción](#1introducción)
+2. [Mecánicas de juego](#2-mecánicas-de-juego)
+    1. [Cartas de ataque](#cartas-de-ataque)
+        1. [Cartas de transporte](#cartas-de-transporte)   
+        2. [Cartas de hogar](#cartas-de-hogar)
+        3. [Cartas de trabajo](#cartas-de-trabajo)
+        4. [Cartas sociales](#cartas-sociales)
+        5. [Cartas de alimentación](#cartas-de-alimentación)
+    2. [Cartas de defensa](#cartas-de-defensa)
+        1. [Cartas de transporte](#cartas-de-transporte-1)   
+        2. [Cartas de hogar](#cartas-de-hogar-1)
+        3. [Cartas de trabajo](#cartas-de-trabajo-1)
+        4. [Cartas sociales](#cartas-sociales-1)
+        5. [Cartas de alimentación](#cartas-de-alimentación-1)
     3. Cartas especiales
 3. Interfaz
 4. Estética y arte
@@ -102,11 +102,11 @@ Las cartas especiales son distintas al resto, sólo hay seis de ellas en total, 
 ![](/Imágenes/Cartas%20Social/carta23.png)
 
 #### Cartas de alimentación
-![](/Imágenes/Cartas%20Alimentación/carta5.png)
-![](/Imágenes/Cartas%20Alimentación/carta6.png)
-![](/Imágenes/Cartas%20Alimentación/carta7.png)
-![](/Imágenes/Cartas%20Alimentación/carta8.png)
-![](/Imágenes/Cartas%20Alimentación/carta9.png)
+![](/Imágenes/Cartas%20Alimentacion/carta5.png)
+![](/Imágenes/Cartas%20Alimentacion/carta6.png)
+![](/Imágenes/Cartas%20Alimentacion/carta7.png)
+![](/Imágenes/Cartas%20Alimentacion/carta8.png)
+![](/Imágenes/Cartas%20Alimentacion/carta9.png)
 
 ### Cartas de defensa
 #### Cartas de transporte
@@ -138,8 +138,8 @@ Las cartas especiales son distintas al resto, sólo hay seis de ellas en total, 
 ![](/Imágenes/Cartas%20Social/carta49.png)
 
 #### Cartas de alimentación
-![](/Imágenes/Cartas%20Alimentación/carta30.png)
-![](/Imágenes/Cartas%20Alimentación/carta31.png)
-![](/Imágenes/Cartas%20Alimentación/carta32.png)
-![](/Imágenes/Cartas%20Alimentación/carta33.png)
-![](/Imágenes/Cartas%20Alimentación/carta34.png)
+![](/Imágenes/Cartas%20Alimentacion/carta30.png)
+![](/Imágenes/Cartas%20Alimentacion/carta31.png)
+![](/Imágenes/Cartas%20Alimentacion/carta32.png)
+![](/Imágenes/Cartas%20Alimentacion/carta33.png)
+![](/Imágenes/Cartas%20Alimentacion/carta34.png)
