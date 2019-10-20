@@ -22,6 +22,7 @@ Schadenfreude.bootState.prototype = {
 
 	create : function() {
 		game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+		game.scale.fullScreenScaleMode = Phaser.ScaleManager.RESIZE;
 	},
 
 	update : function() {

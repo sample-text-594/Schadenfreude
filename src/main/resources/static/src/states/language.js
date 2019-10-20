@@ -68,11 +68,17 @@ Schadenfreude.languageState.prototype = {
 }
 
 function espButton() {
+	if (!game.device.desktop) {
+		game.scale.startFullScreen();
+	}
 	game.global.lang = 'es';
     game.state.start('menuState');    
 }
 
 function engButton() {
+	if (!game.device.desktop) {
+		game.scale.startFullScreen();
+	}
     game.global.lang = 'en';
     game.state.start('menuState');    
 }
