@@ -113,7 +113,7 @@ window.onload = function() {
 			
 			game.global.room.elecciones = msg.elecciones;
 			
-			if (game.global.room.elecciones) {
+			if (game.global.room.elecciones || msg.dc) {
 				game.state.start('tieState');
 			} else {
 				game.state.start('endgameState');

@@ -22,6 +22,7 @@ public class Player {
 	public Player(WebSocketSession session, int id) {
 		this.session = session;
 		this.id = id;
+		this.roomId = -1;
 		
 		this.hand = new Card[MAX_HAND_SIZE];
 		this.handSize = 0;

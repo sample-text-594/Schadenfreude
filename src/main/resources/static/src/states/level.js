@@ -33,7 +33,7 @@ Schadenfreude.levelState.prototype = {
         this.barraEstres.escalaY = 1;
         this.resizeBuffer.push(this.barraEstres);
         
-        this.botonPasar = game.add.button(545, 100, 'pasarB', function() {this.playCard(-1)}, this);
+        this.botonPasar = game.add.button(545, 100, 'pasarB' + game.global.lang, function() {this.playCard(-1)}, this);
         this.botonPasar.posX = 545;
         this.botonPasar.posY = 100;
         this.botonPasar.escalaX = 1;

@@ -41,7 +41,8 @@ Schadenfreude.preloadState.prototype = {
         game.load.image('marcaEscudoV', 'assets/interface/level/marcaEscudoV.png');
         game.load.image('marcaEspada', 'assets/interface/level/marcaEspada.png');
         game.load.image('marcaEspadaV', 'assets/interface/level/marcaEspadaV.png');
-        game.load.image('pasarB', 'assets/interface/level/pasar.png');        
+        game.load.image('pasarBes', 'assets/interface/level/pasares.png');
+        game.load.image('pasarBen', 'assets/interface/level/pasaren.png');
         game.load.image('ruedaHoras', 'assets/interface/level/ruedaHoras.png');
         game.load.spritesheet('barraEstres', 'assets/interface/level/spritesheetBarra.png', 120, 646);        
 

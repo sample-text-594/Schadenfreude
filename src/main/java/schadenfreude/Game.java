@@ -371,7 +371,7 @@ public class Game {
 					lastRound = true;
 					swapRoles();
 				} else {
-					endGame(false);
+					endGame(false, false, -1);
 				}
 			}
 		}
@@ -548,7 +548,7 @@ public class Game {
 		beginTurn("ataque");
 	}
 	
-	private void endGame(boolean elecciones) {
+	public void endGame(boolean elecciones, boolean dc, int id) {
 		ObjectNode msg;
 		
 		msg = mapper.createObjectNode();
@@ -557,21 +557,30 @@ public class Game {
 		msg.put("attackStress", attackPlayer.getStress());
 		msg.put("defenseStress", defensePlayer.getStress());
 		msg.put("elecciones", elecciones);
+		msg.put("dc", dc);
 		
 		try {
-			attackPlayer.getSession().sendMessage(new TextMessage(msg.toString()));
-			defensePlayer.getSession().sendMessage(new TextMessage(msg.toString()));
+			if (id != attackPlayer.getId()) {
+				attackPlayer.getSession().sendMessage(new TextMessage(msg.toString()));
+			}
+			
+			if (id != defensePlayer.getId()) {
+				defensePlayer.getSession().sendMessage(new TextMessage(msg.toString()));
+			}
 		} catch (IOException e) {
 			System.err.println("Exception sending END GAME message");
 			e.printStackTrace(System.err);
 		}
+		
+		attackPlayer.setRoomId(-1);
+		defensePlayer.setRoomId(-1);
 	}
 	
 	public void handleMessage(JsonNode node, int playerID) {
 		switch (node.get("event").asText()) {
 			case "PLAY CARD":
 				if (node.get("elecciones").asBoolean()) {
-					endGame(true);
+					endGame(true, false, -1);
 				} else {
 					playCard(playerID, node.get("index").asInt());
 				}

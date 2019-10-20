@@ -8,6 +8,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.springframework.web.socket.WebSocketSession;
 
@@ -18,16 +20,22 @@ public class Matchmaking {
 	private Map<Integer, Player> playersIDMap;
 	private BlockingQueue<Player> playersWaitingQueue;
 	
-	private AtomicInteger playersID = new AtomicInteger(0);
-	private AtomicInteger playersWaiting = new AtomicInteger(0);
+	private AtomicInteger playersID;
+	private AtomicInteger playersWaiting;
 	private int roomsID = 0;
 	
 	private ScheduledExecutorService scheduler;
+	private Lock queueLock;
 	
 	public Matchmaking() {
 		rooms = new ConcurrentHashMap<>();
 		playersIDMap = new ConcurrentHashMap<>();
 		playersWaitingQueue = new LinkedBlockingQueue<Player>();
+		
+		playersID = new AtomicInteger(0);
+		playersWaiting = new AtomicInteger(0);
+		
+		queueLock = new ReentrantLock();
 		
 		if (scheduler == null) {
 			scheduler = Executors.newScheduledThreadPool(1);
@@ -43,8 +51,22 @@ public class Matchmaking {
 		return p;
 	}
 	
-	public Player removePlayer(int id) {
-		return playersIDMap.remove(id);
+	public void removePlayer(int id) {
+		Player p = playersIDMap.remove(id);
+		
+		try {
+			queueLock.lock();
+			
+			playersWaiting.decrementAndGet();
+			playersWaitingQueue.remove(p);
+		} finally {
+			queueLock.unlock();
+		}
+		
+		if (p.getRoomId() != -1) {
+			rooms.get(p.getRoomId()).endGame(false, true, id);
+			rooms.remove(p.getRoomId());
+		}
 	}
 	
 	public void putPlayerOnQueue(Player p) {
@@ -53,19 +75,27 @@ public class Matchmaking {
 	}
 	
 	private void createGame() {
-		if (playersWaiting.get() > 1) {
-			playersWaiting.addAndGet(-2);
-			Player p1 = playersWaitingQueue.remove();
-			Player p2 = playersWaitingQueue.remove();
+		try {
+			queueLock.lock();
 			
-			p1.setRoomId(roomsID);
-			p2.setRoomId(roomsID);
-			
-			Game g = new Game(p1, p2);
-			
-			rooms.put(roomsID, g);
-			
-			roomsID++;
+			if (playersWaiting.get() > 1) {
+				playersWaiting.decrementAndGet();
+				Player p1 = playersWaitingQueue.remove();
+				
+				playersWaiting.decrementAndGet();
+				Player p2 = playersWaitingQueue.remove();
+				
+				p1.setRoomId(roomsID);
+				p2.setRoomId(roomsID);
+				
+				Game g = new Game(p1, p2);
+				
+				rooms.put(roomsID, g);
+				
+				roomsID++;
+			}
+		} finally {
+			queueLock.unlock();
 		}
 	}
 	
