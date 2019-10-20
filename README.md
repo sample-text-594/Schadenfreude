@@ -184,7 +184,7 @@ Si en un mismo turno se usan determinadas cartas de la misma categoría, puede d
 
 ## 3. Interfaz
 ### Diagrama de flujo de estados
-![](/Imágenes/Diagrama.jpg)
+![](/Imágenes/Diagrama.png)
 
 ### Ejemplos de interfaz *in-game*
 Selección de idioma
