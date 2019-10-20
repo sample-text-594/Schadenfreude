@@ -54,7 +54,7 @@ Si el nivel de estrés del jugador defensor alcanza el máximo, el jugador defen
 ### Desarrollo de la partida
 Al principio de la partida, cada jugador tendrá en su mano cinco cartas, y el resto estarán en su mazo. Una vez acabe la primera ronda, el jugador recibirá las correspondientes cartas según las que no haya usado en la primera ronda, por ejemplo: si el jugador de defensa usa la carta -3 de transporte, luego, cuando sea la segunda ronda, no tendrá en su mazo la carta +3 de transporte; ya que ya ha usado la carta de poder 3 de transporte. Las únicas cartas que no funcionan así son las cartas especiales, estas se reparten al principio de la partida y se mantienen en ambas rondas; si uso una de las tres cartas especiales que tengo en la primera ronda, en la segunda ronda tendré en el mazo las otras dos cartas especiales que tenía en la primera ronda y no usé.
 
-Al principio de cada turno se roba una carta aleatoria del mazo. Y al acabar el turno podemos tener en la mano u máximo de cinco cartas, teniendo que descartar si tuviéramos más.
+Al principio de cada turno se roba una carta aleatoria del mazo. Y al acabar el turno podemos tener en la mano un máximo de seis cartas. Si acabamos el turno con seis cartas, al turno siguiente no se robará ninguna carta.
 
 El jugador defensor podrá defenderse de la carta que utiliza en su contra en jugador de ataque usando una carta de la misma categoría, para ello, sabrá de que categoría es la carta que usa el rival viendo el dorso de la misma. Una vez ambos jugadores hayan usado una carta en ese turno, se suman los valores y el resultado se añade al medidor de estrés.
 
@@ -157,7 +157,7 @@ Las cartas especiales son distintas al resto, sólo hay seis de ellas en total, 
 ![](/Imágenes/Cartas%20Especiales/carta55a.png)
 ![](/Imágenes/Cartas%20Especiales/carta55b.png)
 
-La carta de repetición electoral es una carta única que no suma ni resta puntos de estrés, simplemente refresca la página, cancela la partida y te devuelve al menú.
+La carta de repetición electoral es una carta única que no suma ni resta puntos de estrés, simplemente hace que inmediatamente la partida acabe en empate y se tenga que volver a empezar de cero.
 
 ### Sinergias
 Si en un mismo turno se usan determinadas cartas de la misma categoría, puede darse una sinergia. Estas sinergias otorgan una bonificación o penalización al estrés. Las cartas que tienen sinergias son: 
